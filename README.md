@@ -5,10 +5,8 @@
 </p>
 
 <p align="center">
-  <a href="experiments/"><img alt="Code: Experiments" src="https://img.shields.io/badge/Code-Experiments-blue.svg"></a>
-  <a href="docs/reproduction.md"><img alt="Guide: Reproduce" src="https://img.shields.io/badge/Guide-Reproduce-green.svg"></a>
-  <a href="docs/results.md"><img alt="Results: Archive" src="https://img.shields.io/badge/Results-Archive-orange.svg"></a>
-  <a href="#citation"><img alt="Citation: BibTeX" src="https://img.shields.io/badge/Citation-BibTeX-blueviolet.svg"></a>
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-green.svg"></a>
+  <a href="requirements.txt"><img alt="Python" src="https://img.shields.io/badge/Language-Python-blue.svg"></a>
 </p>
 
 <p align="center">
