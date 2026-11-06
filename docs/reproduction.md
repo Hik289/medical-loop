@@ -11,7 +11,7 @@ python figures/draw_intuition.py
 python figures/legacy/fig1_core_finding_code.py
 ~~~
 
-The first two commands check metric invariants and the arithmetic of the published aggregates. The last two render the conceptual PNG and the archived paper-results plot. All four are offline. Generated outputs go under the ignored run directory, except the overview PNG under `assets/`.
+The first two commands check metric invariants and the arithmetic of the published aggregates. The last two render the programmatic schematic and the archived paper-results plot. All four are offline. Generated outputs go under the ignored run directory. The illustrated README overview is a separate PNG under `assets/`.
 
 ## Experiment entry points
 

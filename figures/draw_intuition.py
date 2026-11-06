@@ -1,4 +1,5 @@
-"""Draw the HumanChoice method schematic as a standalone paper-style PNG."""
+"""Render the archived programmatic schematic without replacing the README artwork."""
+import os
 from pathlib import Path
 
 import matplotlib
@@ -202,7 +203,9 @@ for x,s,col,fc,ec in ((11.90,"A",BLUE,SKY,BLUE_LINE),
 for x in (12.48,13.48):
     arrow([(x+.06,.96),(x+.34,.96)],MUTED,lw=1.10,scale=10)
 
-out = Path(__file__).resolve().parents[1] / "assets" / "humanchoice-intuition.png"
+root = Path(__file__).resolve().parents[1]
+runs = Path(os.environ.get("HUMANCHOICE_RUN_DIR", root / "runs")).expanduser()
+out = runs / "legacy_figures" / "humanchoice-schematic.png"
 out.parent.mkdir(parents=True, exist_ok=True)
 fig.savefig(out, dpi=200, metadata={"Software": "Matplotlib", "Title": "HumanChoice overview"})
 plt.close(fig)

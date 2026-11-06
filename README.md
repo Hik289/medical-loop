@@ -36,7 +36,7 @@ python -m pip install -r requirements.txt
 python scripts/check_results.py
 ~~~
 
-The [reproduction guide](docs/reproduction.md) lists the experiment entry points. The [results archive](experiments/results/) contains the aggregate outputs. The [figure source](figures/draw_intuition.py) regenerates the overview PNG.
+The [reproduction guide](docs/reproduction.md) lists the experiment entry points. The [results archive](experiments/results/) contains the aggregate outputs.
 
 ## Citation
 
