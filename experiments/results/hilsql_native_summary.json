@@ -1,0 +1,11 @@
+{
+  "benchmark": "HiL-Bench SQL",
+  "protocol": "Native (baseline, no ask_human)",
+  "db_subset": "financial (only DB baked in public image)",
+  "model": "gpt-5.6-sol",
+  "n_tasks": 13,
+  "n_solved": 0,
+  "solve_rate": 0.0,
+  "note": "Native baseline on blocker tasks is EXPECTED LOW (HiL-Bench design: clarification needed). anchor_5 = official compare_pandas_outputs scorer runs + magnitude plausible. Full 100-task / 8-DB official run needs uv+sweagent+chromadb+docker MCP stack (blocker recorded).",
+  "scorer": "official compare_pandas_outputs (from test_verify.py)"
+}

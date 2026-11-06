@@ -1,0 +1,52 @@
+{
+  "experiment_id": "anchor_1",
+  "anchor": "H0.anchor_1 + lit_anchor1_range + eda_akirecall",
+  "method": "Autonomous Agent (gpt-5.6-sol, fully autonomous, 32 visible fields)",
+  "description": "固定后端三分类复现, 命门; 仅可见字段, 无泄漏",
+  "config": {
+    "model": "gpt-5.6-sol",
+    "n_test": 270,
+    "visible_fields": 32,
+    "reasoning": "default",
+    "workers": 8
+  },
+  "reference": {
+    "clean_logreg_acc": 71.48,
+    "clean_logreg_aki_recall": 40.5,
+    "majority_acc": 60.74,
+    "random_acc": 33.3,
+    "range_pass": [
+      55.0,
+      80.0
+    ]
+  },
+  "results": {
+    "overall_acc": 28.15,
+    "overall_acc_ci95": [
+      22.96,
+      33.7
+    ],
+    "macro_f1": 25.37,
+    "per_class_recall": {
+      "A": 3.7,
+      "B": 79.7,
+      "C": 40.5
+    },
+    "aki_recall": 40.5,
+    "support": {
+      "A": 164,
+      "B": 69,
+      "C": 37
+    },
+    "n_parse_fail": 0,
+    "n_api_err": 0
+  },
+  "cost": {
+    "total_tokens": 170142
+  },
+  "judgment": {
+    "acc_in_range_55_80": false,
+    "acc_above_random": false,
+    "note": "acc 在区间内但 AKI recall 低 ≠ 失败, 是 Augmentation 目标信号; 仅 acc 崩溃(<55 或 ≈random)才算复现失败"
+  }
+}

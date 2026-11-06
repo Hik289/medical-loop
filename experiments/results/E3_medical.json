@@ -1,0 +1,86 @@
+{
+  "n_tasks": 270,
+  "scorer": "simulated",
+  "simulated": true,
+  "note": "All human answers LLM-simulated (gpt-5.6-sol as doctor). Each per-method decision (ask/pred/revision) is a REAL cached LLM output; no modeling/interpolation. Formal human-augmentation conclusions require real doctors.",
+  "base_autonomous": {
+    "record_acc": 45.56,
+    "macro_f1": 43.47,
+    "per_class_recall": {
+      "A": 36.59,
+      "B": 65.22,
+      "C": 48.65
+    },
+    "aki_recall": 48.65,
+    "support": {
+      "A": 164,
+      "B": 69,
+      "C": 37
+    }
+  },
+  "E3": {
+    "Ambiguity Trigger (CLAM)": {
+      "final_quality": 45.56,
+      "rescue": 0.0,
+      "harm": 0.0,
+      "unnecessary_questions": 269,
+      "n_asked": 270,
+      "human_seconds": 51.4,
+      "gain_per_minute": 0.0
+    },
+    "Information Gain (ATD/UoT)": {
+      "final_quality": 44.44,
+      "rescue": 1.85,
+      "harm": 2.96,
+      "unnecessary_questions": 163,
+      "n_asked": 178,
+      "human_seconds": 41.3,
+      "gain_per_minute": -0.006
+    },
+    "EVPI Trigger (SAGE)": {
+      "final_quality": 46.3,
+      "rescue": 1.48,
+      "harm": 0.74,
+      "unnecessary_questions": 215,
+      "n_asked": 223,
+      "human_seconds": 48.5,
+      "gain_per_minute": 0.0034
+    },
+    "Utility Trigger (VoI)": {
+      "final_quality": 45.56,
+      "rescue": 0.37,
+      "harm": 0.37,
+      "unnecessary_questions": 14,
+      "n_asked": 16,
+      "human_seconds": 3.6,
+      "gain_per_minute": 0.0
+    },
+    "Post-hoc Deferral Gate": {
+      "final_quality": 46.3,
+      "rescue": 1.48,
+      "harm": 0.74,
+      "unnecessary_questions": 245,
+      "n_asked": 253,
+      "human_seconds": 54.8,
+      "gain_per_minute": 0.003
+    },
+    "UoT Gate": {
+      "final_quality": 44.44,
+      "rescue": 2.22,
+      "harm": 3.33,
+      "unnecessary_questions": 189,
+      "n_asked": 209,
+      "human_seconds": 48.3,
+      "gain_per_minute": -0.0051
+    },
+    "G: Ask Now vs Wait (HumanChoice)": {
+      "final_quality": 46.3,
+      "rescue": 0.74,
+      "harm": 0.0,
+      "unnecessary_questions": 268,
+      "n_asked": 270,
+      "human_seconds": 52.9,
+      "gain_per_minute": 0.0031
+    }
+  }
+}

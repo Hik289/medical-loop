@@ -1,0 +1,12 @@
+{
+  "anchor": "H0.anchor_3 (recheck) + H0.anchor_2b (new invariant)",
+  "n_pass": 27,
+  "n_fail": 0,
+  "status": "PASS",
+  "group_sizes": {
+    "D_A": 199,
+    "D_Q": 206,
+    "D_G": 222
+  },
+  "failures": []
+}

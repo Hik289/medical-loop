@@ -1,0 +1,58 @@
+{
+  "n_tasks": 270,
+  "scorer": "simulated",
+  "simulated": true,
+  "note": "All human answers LLM-simulated (gpt-5.6-sol as doctor). Each per-method decision (ask/pred/revision) is a REAL cached LLM output; no modeling/interpolation. Formal human-augmentation conclusions require real doctors.",
+  "base_autonomous": {
+    "record_acc": 45.56,
+    "macro_f1": 43.47,
+    "per_class_recall": {
+      "A": 36.59,
+      "B": 65.22,
+      "C": 48.65
+    },
+    "aki_recall": 48.65,
+    "support": {
+      "A": 164,
+      "B": 69,
+      "C": 37
+    }
+  },
+  "E8": {
+    "Autonomous Agent": {
+      "task_completion": 100.0,
+      "final_quality": 45.56,
+      "autonomous_fallback_completion": null,
+      "human_seconds": 0.0,
+      "api_cost_rel": 1.0
+    },
+    "HumanChoice 0% Availability": {
+      "task_completion": 100.0,
+      "final_quality": 45.56,
+      "autonomous_fallback_completion": 100.0,
+      "human_seconds": 0.0,
+      "api_cost_rel": 2.0
+    },
+    "HumanChoice 25% Availability": {
+      "task_completion": 100.0,
+      "final_quality": 45.56,
+      "autonomous_fallback_completion": 72.59,
+      "human_seconds": 14.0,
+      "api_cost_rel": 2.0
+    },
+    "HumanChoice 50% Availability": {
+      "task_completion": 100.0,
+      "final_quality": 45.93,
+      "autonomous_fallback_completion": 48.15,
+      "human_seconds": 26.9,
+      "api_cost_rel": 2.0
+    },
+    "HumanChoice 100% Availability": {
+      "task_completion": 100.0,
+      "final_quality": 46.3,
+      "autonomous_fallback_completion": 0.0,
+      "human_seconds": 52.9,
+      "api_cost_rel": 2.0
+    }
+  }
+}

@@ -1,0 +1,408 @@
+{
+  "n_tasks": 270,
+  "scorer": "simulated",
+  "simulated": true,
+  "note": "All human answers LLM-simulated (gpt-5.6-sol as doctor). Each per-method decision (ask/pred/revision) is a REAL cached LLM output; no modeling/interpolation. Formal human-augmentation conclusions require real doctors.",
+  "base_autonomous": {
+    "record_acc": 45.56,
+    "macro_f1": 43.47,
+    "per_class_recall": {
+      "A": 36.59,
+      "B": 65.22,
+      "C": 48.65
+    },
+    "aki_recall": 48.65,
+    "support": {
+      "A": 164,
+      "B": 69,
+      "C": 37
+    }
+  },
+  "E2": {
+    "Autonomous Agent": {
+      "record_acc": 45.56,
+      "macro_f1": 43.47,
+      "per_class_recall": {
+        "A": 36.59,
+        "B": 65.22,
+        "C": 48.65
+      },
+      "aki_recall": 48.65,
+      "net_rescue": 0.0,
+      "rescue": 0.0,
+      "harm": 0.0,
+      "net_rescue_ci95": [
+        0.0,
+        0.0
+      ],
+      "net_rescue_C_AKI": 0.0,
+      "net_rescue_C_AKI_ci95": [
+        0.0,
+        0.0
+      ],
+      "net_rescue_A": 0.0,
+      "net_rescue_B": 0.0,
+      "human_seconds": 0.0,
+      "human_seconds_total": 0.0,
+      "api_cost_rel": 1.0,
+      "n": 270,
+      "n_support": {
+        "A": 164,
+        "B": 69,
+        "C": 37
+      },
+      "doctor_seconds": 0,
+      "asked_pct": 0.0
+    },
+    "Compute-Matched Autonomous": {
+      "record_acc": 26.3,
+      "macro_f1": 24.1,
+      "per_class_recall": {
+        "A": 2.44,
+        "B": 72.46,
+        "C": 45.95
+      },
+      "aki_recall": 45.95,
+      "net_rescue": -19.26,
+      "rescue": 5.93,
+      "harm": 25.19,
+      "net_rescue_ci95": [
+        -25.56,
+        -12.96
+      ],
+      "net_rescue_C_AKI": -2.7,
+      "net_rescue_C_AKI_ci95": [
+        -21.62,
+        16.22
+      ],
+      "net_rescue_A": -34.15,
+      "net_rescue_B": 7.25,
+      "human_seconds": 0.0,
+      "human_seconds_total": 0.0,
+      "api_cost_rel": 5.0,
+      "n": 270,
+      "n_support": {
+        "A": 164,
+        "B": 69,
+        "C": 37
+      },
+      "doctor_seconds": 0,
+      "asked_pct": 0.0
+    },
+    "ATD": {
+      "record_acc": 44.44,
+      "macro_f1": 42.4,
+      "per_class_recall": {
+        "A": 36.59,
+        "B": 60.87,
+        "C": 48.65
+      },
+      "aki_recall": 48.65,
+      "net_rescue": -1.11,
+      "rescue": 1.85,
+      "harm": 2.96,
+      "net_rescue_ci95": [
+        -3.7,
+        1.48
+      ],
+      "net_rescue_C_AKI": 0.0,
+      "net_rescue_C_AKI_ci95": [
+        -8.11,
+        8.11
+      ],
+      "net_rescue_A": 0.0,
+      "net_rescue_B": -4.35,
+      "human_seconds": 41.3,
+      "human_seconds_total": 11145.0,
+      "api_cost_rel": 1.8,
+      "n": 270,
+      "n_support": {
+        "A": 164,
+        "B": 69,
+        "C": 37
+      },
+      "doctor_seconds": 41.3,
+      "asked_pct": 65.9,
+      "unsupported": {
+        "n_insuf_asked": 104,
+        "n_over_assert": 0,
+        "over_assert_rate": 0.0
+      }
+    },
+    "SAGE-Agent": {
+      "record_acc": 46.3,
+      "macro_f1": 44.28,
+      "per_class_recall": {
+        "A": 37.8,
+        "B": 63.77,
+        "C": 51.35
+      },
+      "aki_recall": 51.35,
+      "net_rescue": 0.74,
+      "rescue": 1.48,
+      "harm": 0.74,
+      "net_rescue_ci95": [
+        -1.11,
+        2.59
+      ],
+      "net_rescue_C_AKI": 2.7,
+      "net_rescue_C_AKI_ci95": [
+        0.0,
+        8.11
+      ],
+      "net_rescue_A": 1.22,
+      "net_rescue_B": -1.45,
+      "human_seconds": 48.5,
+      "human_seconds_total": 13085.0,
+      "api_cost_rel": 1.8,
+      "n": 270,
+      "n_support": {
+        "A": 164,
+        "B": 69,
+        "C": 37
+      },
+      "doctor_seconds": 48.5,
+      "asked_pct": 82.6,
+      "unsupported": {
+        "n_insuf_asked": 205,
+        "n_over_assert": 0,
+        "over_assert_rate": 0.0
+      }
+    },
+    "VoI Communication": {
+      "record_acc": 45.56,
+      "macro_f1": 43.42,
+      "per_class_recall": {
+        "A": 37.2,
+        "B": 63.77,
+        "C": 48.65
+      },
+      "aki_recall": 48.65,
+      "net_rescue": 0.0,
+      "rescue": 0.37,
+      "harm": 0.37,
+      "net_rescue_ci95": [
+        -1.11,
+        1.11
+      ],
+      "net_rescue_C_AKI": 0.0,
+      "net_rescue_C_AKI_ci95": [
+        0.0,
+        0.0
+      ],
+      "net_rescue_A": 0.61,
+      "net_rescue_B": -1.45,
+      "human_seconds": 3.6,
+      "human_seconds_total": 975.0,
+      "api_cost_rel": 1.8,
+      "n": 270,
+      "n_support": {
+        "A": 164,
+        "B": 69,
+        "C": 37
+      },
+      "doctor_seconds": 3.6,
+      "asked_pct": 5.9,
+      "unsupported": {
+        "n_insuf_asked": 10,
+        "n_over_assert": 0,
+        "over_assert_rate": 0.0
+      }
+    },
+    "CLAM-API": {
+      "record_acc": 45.56,
+      "macro_f1": 43.46,
+      "per_class_recall": {
+        "A": 36.59,
+        "B": 65.22,
+        "C": 48.65
+      },
+      "aki_recall": 48.65,
+      "net_rescue": 0.0,
+      "rescue": 0.0,
+      "harm": 0.0,
+      "net_rescue_ci95": [
+        0.0,
+        0.0
+      ],
+      "net_rescue_C_AKI": 0.0,
+      "net_rescue_C_AKI_ci95": [
+        0.0,
+        0.0
+      ],
+      "net_rescue_A": 0.0,
+      "net_rescue_B": 0.0,
+      "human_seconds": 51.4,
+      "human_seconds_total": 13870.0,
+      "api_cost_rel": 1.8,
+      "n": 270,
+      "n_support": {
+        "A": 164,
+        "B": 69,
+        "C": 37
+      },
+      "doctor_seconds": 51.4,
+      "asked_pct": 100.0,
+      "unsupported": {
+        "n_insuf_asked": 269,
+        "n_over_assert": 0,
+        "over_assert_rate": 0.0
+      }
+    },
+    "UoT": {
+      "record_acc": 44.44,
+      "macro_f1": 42.15,
+      "per_class_recall": {
+        "A": 37.2,
+        "B": 60.87,
+        "C": 45.95
+      },
+      "aki_recall": 45.95,
+      "net_rescue": -1.11,
+      "rescue": 2.22,
+      "harm": 3.33,
+      "net_rescue_ci95": [
+        -4.07,
+        1.85
+      ],
+      "net_rescue_C_AKI": -2.7,
+      "net_rescue_C_AKI_ci95": [
+        -13.51,
+        5.41
+      ],
+      "net_rescue_A": 0.61,
+      "net_rescue_B": -4.35,
+      "human_seconds": 48.3,
+      "human_seconds_total": 13030.0,
+      "api_cost_rel": 1.8,
+      "n": 270,
+      "n_support": {
+        "A": 164,
+        "B": 69,
+        "C": 37
+      },
+      "doctor_seconds": 48.3,
+      "asked_pct": 77.4,
+      "unsupported": {
+        "n_insuf_asked": 117,
+        "n_over_assert": 0,
+        "over_assert_rate": 0.0
+      }
+    },
+    "Post-hoc Deferral": {
+      "record_acc": 46.3,
+      "macro_f1": 44.28,
+      "per_class_recall": {
+        "A": 37.8,
+        "B": 63.77,
+        "C": 51.35
+      },
+      "aki_recall": 51.35,
+      "net_rescue": 0.74,
+      "rescue": 1.48,
+      "harm": 0.74,
+      "net_rescue_ci95": [
+        -1.11,
+        2.59
+      ],
+      "net_rescue_C_AKI": 2.7,
+      "net_rescue_C_AKI_ci95": [
+        0.0,
+        8.11
+      ],
+      "net_rescue_A": 1.22,
+      "net_rescue_B": -1.45,
+      "human_seconds": 54.8,
+      "human_seconds_total": 14800.0,
+      "api_cost_rel": 1.8,
+      "n": 270,
+      "n_support": {
+        "A": 164,
+        "B": 69,
+        "C": 37
+      },
+      "doctor_seconds": 54.8,
+      "asked_pct": 93.7,
+      "unsupported": {
+        "n_insuf_asked": 231,
+        "n_over_assert": 0,
+        "over_assert_rate": 0.0
+      }
+    },
+    "HumanChoice": {
+      "record_acc": 46.3,
+      "macro_f1": 44.05,
+      "per_class_recall": {
+        "A": 37.8,
+        "B": 65.22,
+        "C": 48.65
+      },
+      "aki_recall": 48.65,
+      "net_rescue": 0.74,
+      "rescue": 0.74,
+      "harm": 0.0,
+      "net_rescue_ci95": [
+        0.0,
+        1.85
+      ],
+      "net_rescue_C_AKI": 0.0,
+      "net_rescue_C_AKI_ci95": [
+        0.0,
+        0.0
+      ],
+      "net_rescue_A": 1.22,
+      "net_rescue_B": 0.0,
+      "human_seconds": 52.9,
+      "human_seconds_total": 14285.0,
+      "api_cost_rel": 2.0,
+      "n": 270,
+      "n_support": {
+        "A": 164,
+        "B": 69,
+        "C": 37
+      },
+      "doctor_seconds": 52.9,
+      "asked_pct": 100.0,
+      "unsupported": {
+        "n_insuf_asked": 267,
+        "n_over_assert": 0,
+        "over_assert_rate": 0.0
+      }
+    },
+    "Doctor-Only": {
+      "record_acc": 46.3,
+      "macro_f1": 44.05,
+      "per_class_recall": {
+        "A": 37.8,
+        "B": 65.22,
+        "C": 48.65
+      },
+      "aki_recall": 48.65,
+      "net_rescue": 0.74,
+      "rescue": 0.74,
+      "harm": 0.0,
+      "net_rescue_ci95": [
+        0.0,
+        1.85
+      ],
+      "net_rescue_C_AKI": 0.0,
+      "net_rescue_C_AKI_ci95": [
+        0.0,
+        0.0
+      ],
+      "net_rescue_A": 1.22,
+      "net_rescue_B": 0.0,
+      "human_seconds": 172.9,
+      "human_seconds_total": 46685.0,
+      "api_cost_rel": 0.0,
+      "n": 270,
+      "n_support": {
+        "A": 164,
+        "B": 69,
+        "C": 37
+      },
+      "doctor_seconds": 172.9,
+      "note": "proxy: HumanChoice preds + full-case read time; no agent-first"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "experiment_id": "anchor1_step2_dev",
+  "method": "good-faith prompt (3类定义+临床鉴别+fewshot5), gpt-5.6-sol effort=high",
+  "split": "dev",
+  "prompt_hash": "5c739bc0559a0729",
+  "promptver": "v1",
+  "config": {
+    "model": "gpt-5.6-sol",
+    "n": 151,
+    "fewshot_per_class": 5,
+    "effort": "high",
+    "visible_fields": 32
+  },
+  "results": {
+    "overall_acc": 41.06,
+    "overall_acc_ci95": [
+      33.11,
+      49.01
+    ],
+    "macro_f1": 40.17,
+    "per_class_recall": {
+      "A": 30.4,
+      "B": 59.0,
+      "C": 55.0
+    },
+    "aki_recall": 55.0,
+    "support": {
+      "A": 92,
+      "B": 39,
+      "C": 20
+    },
+    "pred_dist": {
+      "C": 44,
+      "A": 43,
+      "B": 64
+    },
+    "confusion": {
+      "A": {
+        "A": 28,
+        "B": 35,
+        "C": 29
+      },
+      "B": {
+        "A": 12,
+        "B": 23,
+        "C": 4
+      },
+      "C": {
+        "A": 3,
+        "B": 6,
+        "C": 11
+      }
+    },
+    "n_parse_fail": 0
+  },
+  "cost": {
+    "total_tokens": 898899
+  },
+  "reference": {
+    "clean_logreg_acc": 71.48,
+    "majority_acc": 60.74,
+    "random_acc": 33.3,
+    "range_pass": [
+      55.0,
+      80.0
+    ]
+  }
+}

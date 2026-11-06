@@ -1,0 +1,1329 @@
+{
+  "experiment": "E7 Cross-Domain and Unseen-Participant Transfer",
+  "simulated": true,
+  "honesty": "All participants are gpt-5.6-sol simulations (labelled). Cells are status=null with a reason when their inputs (artifacts or caches) do not exist; no cell is estimated.",
+  "rows": {
+    "ClarifyBench -> NoisyToolBench": {
+      "status": "null",
+      "value": null,
+      "reason": "out of scope of this backlog; existing build_e7.py row (gold clarification, no modules) kept separately. NTB is used here as the General TRAIN domain, so a module-based NTB test row would be contaminated."
+    },
+    "Tool Tasks (NoisyToolBench) -> HiL-Bench SQL (financial)": {
+      "autonomous_quality": {
+        "status": "measured",
+        "n_tasks": 13,
+        "n_measured": 13,
+        "n_error": 0,
+        "solve_rate": 0.0
+      },
+      "humanchoice_quality": {
+        "status": "measured",
+        "result": {
+          "status": "measured",
+          "n_seeds": 3,
+          "per_seed": [
+            {
+              "status": "measured",
+              "n_total": 13,
+              "n_measured": 13,
+              "n_error": 0,
+              "final_quality": 0.0,
+              "autonomous_quality": 0.0,
+              "rescue": 0.0,
+              "harm": 0.0,
+              "net_rescue": 0.0,
+              "net_rescue_ci95": [
+                0.0,
+                0.0
+              ],
+              "asked_pct": 0.0,
+              "unnecessary_questions": 0,
+              "simulated_seconds_mean": 0.0,
+              "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+              "augmentation_gain": 0.0,
+              "api_calls_per_task": 2.0,
+              "seed": 42
+            },
+            {
+              "status": "measured",
+              "n_total": 13,
+              "n_measured": 13,
+              "n_error": 0,
+              "final_quality": 0.0,
+              "autonomous_quality": 0.0,
+              "rescue": 0.0,
+              "harm": 0.0,
+              "net_rescue": 0.0,
+              "net_rescue_ci95": [
+                0.0,
+                0.0
+              ],
+              "asked_pct": 0.0,
+              "unnecessary_questions": 0,
+              "simulated_seconds_mean": 0.0,
+              "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+              "augmentation_gain": 0.0,
+              "api_calls_per_task": 2.0,
+              "seed": 123
+            },
+            {
+              "status": "measured",
+              "n_total": 13,
+              "n_measured": 13,
+              "n_error": 0,
+              "final_quality": 0.0,
+              "autonomous_quality": 0.0,
+              "rescue": 0.0,
+              "harm": 0.0,
+              "net_rescue": 0.0,
+              "net_rescue_ci95": [
+                0.0,
+                0.0
+              ],
+              "asked_pct": 0.0,
+              "unnecessary_questions": 0,
+              "simulated_seconds_mean": 0.0,
+              "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+              "augmentation_gain": 0.0,
+              "api_calls_per_task": 2.0,
+              "seed": 456
+            }
+          ],
+          "final_quality": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "autonomous_quality": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "augmentation_gain": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "net_rescue": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "asked_pct": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "simulated_seconds_mean": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "api_calls_per_task": {
+            "mean": 2.0,
+            "std": 0.0
+          }
+        }
+      }
+    },
+    "General -> Medical, frozen G/Q/A": {
+      "status": "measured",
+      "n_seeds": 3,
+      "per_seed": [
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "api_calls_per_task": 2.0,
+          "seed": 42
+        },
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "api_calls_per_task": 2.0,
+          "seed": 123
+        },
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "api_calls_per_task": 2.0,
+          "seed": 456
+        }
+      ],
+      "final_quality": {
+        "mean": 45.56,
+        "std": 0.0
+      },
+      "autonomous_quality": {
+        "mean": 45.56,
+        "std": 0.0
+      },
+      "augmentation_gain": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "net_rescue": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "asked_pct": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "simulated_seconds_mean": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "api_calls_per_task": {
+        "mean": 2.0,
+        "std": 0.0
+      },
+      "record_acc": {
+        "mean": 45.56,
+        "std": 0.0
+      }
+    },
+    "General -> Medical, dev probability calibration": {
+      "status": "measured",
+      "n_seeds": 3,
+      "per_seed": [
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "api_calls_per_task": 2.0,
+          "seed": 42
+        },
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "api_calls_per_task": 2.0,
+          "seed": 123
+        },
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "api_calls_per_task": 2.0,
+          "seed": 456
+        }
+      ],
+      "final_quality": {
+        "mean": 45.56,
+        "std": 0.0
+      },
+      "autonomous_quality": {
+        "mean": 45.56,
+        "std": 0.0
+      },
+      "augmentation_gain": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "net_rescue": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "asked_pct": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "simulated_seconds_mean": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "api_calls_per_task": {
+        "mean": 2.0,
+        "std": 0.0
+      },
+      "record_acc": {
+        "mean": 45.56,
+        "std": 0.0
+      }
+    },
+    "Seen -> Unseen Participants (simulated personas)": {
+      "seen": {
+        "status": "measured",
+        "n_seeds": 3,
+        "per_seed": [
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 42
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 123
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 456
+          }
+        ],
+        "final_quality": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "autonomous_quality": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "augmentation_gain": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "net_rescue": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "asked_pct": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "simulated_seconds_mean": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "api_calls_per_task": {
+          "mean": 2.0,
+          "std": 0.0
+        },
+        "record_acc": {
+          "mean": 45.56,
+          "std": 0.0
+        }
+      },
+      "unseen": {
+        "status": "measured",
+        "n_seeds": 3,
+        "per_seed": [
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 42
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 123
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 456
+          }
+        ],
+        "final_quality": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "autonomous_quality": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "augmentation_gain": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "net_rescue": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "asked_pct": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "simulated_seconds_mean": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "api_calls_per_task": {
+          "mean": 2.0,
+          "std": 0.0
+        },
+        "record_acc": {
+          "mean": 45.56,
+          "std": 0.0
+        }
+      }
+    }
+  },
+  "parts": {
+    "medical_frozen": {
+      "status": "measured",
+      "test_cache_audit": {
+        "suspect_fallback_answer": 0
+      },
+      "result": {
+        "status": "measured",
+        "n_seeds": 3,
+        "per_seed": [
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 42
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 123
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 456
+          }
+        ],
+        "final_quality": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "autonomous_quality": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "augmentation_gain": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "net_rescue": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "asked_pct": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "simulated_seconds_mean": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "api_calls_per_task": {
+          "mean": 2.0,
+          "std": 0.0
+        },
+        "record_acc": {
+          "mean": 45.56,
+          "std": 0.0
+        }
+      }
+    },
+    "medical_calibrated": {
+      "status": "measured",
+      "n_dev_records": 121,
+      "platt": {
+        "42": {
+          "A": {
+            "a": -1546.4706686860816,
+            "b": 1.3861991608443773,
+            "n": 19
+          },
+          "G": {
+            "a": 1.9304003843213111,
+            "b": -0.6316129854793048,
+            "n": 121
+          }
+        },
+        "123": {
+          "A": {
+            "a": -1392.4361367712022,
+            "b": 1.204271501559077,
+            "n": 19
+          },
+          "G": {
+            "a": 1.5475295231278468,
+            "b": -0.34114649815783127,
+            "n": 121
+          }
+        },
+        "456": {
+          "A": {
+            "a": -1086.1422430929656,
+            "b": 2.5407624472035004,
+            "n": 19
+          },
+          "G": {
+            "a": 1.9722973321982928,
+            "b": -0.6291387353954563,
+            "n": 121
+          }
+        }
+      },
+      "test_cache_audit": {
+        "suspect_fallback_answer": 0
+      },
+      "result": {
+        "status": "measured",
+        "n_seeds": 3,
+        "per_seed": [
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 42
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 123
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 456
+          }
+        ],
+        "final_quality": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "autonomous_quality": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "augmentation_gain": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "net_rescue": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "asked_pct": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "simulated_seconds_mean": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "api_calls_per_task": {
+          "mean": 2.0,
+          "std": 0.0
+        },
+        "record_acc": {
+          "mean": 45.56,
+          "std": 0.0
+        }
+      }
+    },
+    "hilsql": {
+      "autonomous": {
+        "status": "measured",
+        "n_tasks": 13,
+        "n_measured": 13,
+        "n_error": 0,
+        "solve_rate": 0.0
+      },
+      "humanchoice_frozen_general": {
+        "status": "measured",
+        "result": {
+          "status": "measured",
+          "n_seeds": 3,
+          "per_seed": [
+            {
+              "status": "measured",
+              "n_total": 13,
+              "n_measured": 13,
+              "n_error": 0,
+              "final_quality": 0.0,
+              "autonomous_quality": 0.0,
+              "rescue": 0.0,
+              "harm": 0.0,
+              "net_rescue": 0.0,
+              "net_rescue_ci95": [
+                0.0,
+                0.0
+              ],
+              "asked_pct": 0.0,
+              "unnecessary_questions": 0,
+              "simulated_seconds_mean": 0.0,
+              "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+              "augmentation_gain": 0.0,
+              "api_calls_per_task": 2.0,
+              "seed": 42
+            },
+            {
+              "status": "measured",
+              "n_total": 13,
+              "n_measured": 13,
+              "n_error": 0,
+              "final_quality": 0.0,
+              "autonomous_quality": 0.0,
+              "rescue": 0.0,
+              "harm": 0.0,
+              "net_rescue": 0.0,
+              "net_rescue_ci95": [
+                0.0,
+                0.0
+              ],
+              "asked_pct": 0.0,
+              "unnecessary_questions": 0,
+              "simulated_seconds_mean": 0.0,
+              "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+              "augmentation_gain": 0.0,
+              "api_calls_per_task": 2.0,
+              "seed": 123
+            },
+            {
+              "status": "measured",
+              "n_total": 13,
+              "n_measured": 13,
+              "n_error": 0,
+              "final_quality": 0.0,
+              "autonomous_quality": 0.0,
+              "rescue": 0.0,
+              "harm": 0.0,
+              "net_rescue": 0.0,
+              "net_rescue_ci95": [
+                0.0,
+                0.0
+              ],
+              "asked_pct": 0.0,
+              "unnecessary_questions": 0,
+              "simulated_seconds_mean": 0.0,
+              "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+              "augmentation_gain": 0.0,
+              "api_calls_per_task": 2.0,
+              "seed": 456
+            }
+          ],
+          "final_quality": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "autonomous_quality": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "augmentation_gain": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "net_rescue": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "asked_pct": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "simulated_seconds_mean": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "api_calls_per_task": {
+            "mean": 2.0,
+            "std": 0.0
+          }
+        }
+      },
+      "record_status": {
+        "measured": 13
+      }
+    },
+    "unseen": {
+      "status": "measured",
+      "modules": "E5 ei_iter3 (trained on seen persona S3_SYS answers)",
+      "seen": {
+        "status": "measured",
+        "n_seeds": 3,
+        "per_seed": [
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 42
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 123
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 456
+          }
+        ],
+        "final_quality": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "autonomous_quality": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "augmentation_gain": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "net_rescue": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "asked_pct": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "simulated_seconds_mean": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "api_calls_per_task": {
+          "mean": 2.0,
+          "std": 0.0
+        },
+        "record_acc": {
+          "mean": 45.56,
+          "std": 0.0
+        }
+      },
+      "unseen": {
+        "status": "measured",
+        "n_seeds": 3,
+        "per_seed": [
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 42
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 123
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "api_calls_per_task": 2.0,
+            "seed": 456
+          }
+        ],
+        "final_quality": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "autonomous_quality": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "augmentation_gain": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "net_rescue": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "asked_pct": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "simulated_seconds_mean": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "api_calls_per_task": {
+          "mean": 2.0,
+          "std": 0.0
+        },
+        "record_acc": {
+          "mean": 45.56,
+          "std": 0.0
+        }
+      },
+      "unseen_personas": [
+        "unseen_er_attending",
+        "unseen_endocrinologist"
+      ],
+      "record_status": {
+        "measured": 270
+      }
+    }
+  }
+}

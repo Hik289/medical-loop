@@ -1,0 +1,57 @@
+{
+  "benchmark": "ClarifyBench",
+  "protocol": "Native",
+  "agent": "baseline (Autonomous, gpt-5.6-sol)",
+  "anchor": "H0.anchor_5",
+  "per_subset": {
+    "A": {
+      "subset": "A",
+      "n_total": 214,
+      "n_done": 207,
+      "n_evaluated": 207,
+      "n_runerr": 0,
+      "task_success_pct": 0.0,
+      "tool_match_rate_pct": 79.17,
+      "param_match_rate_pct": 67.9,
+      "exact_match_pct": 0.0,
+      "execution_success_rate_pct": 92.34,
+      "coverage_rate_pct": 53.66
+    },
+    "E": {
+      "subset": "E",
+      "n_total": 242,
+      "n_done": 239,
+      "n_evaluated": 239,
+      "n_runerr": 0,
+      "task_success_pct": 0.0,
+      "tool_match_rate_pct": 89.51,
+      "param_match_rate_pct": 75.08,
+      "exact_match_pct": 0.0,
+      "execution_success_rate_pct": 91.31,
+      "coverage_rate_pct": 61.89
+    },
+    "I": {
+      "subset": "I",
+      "n_total": 148,
+      "n_done": 145,
+      "n_evaluated": 145,
+      "n_runerr": 0,
+      "task_success_pct": 0.0,
+      "tool_match_rate_pct": 81.85,
+      "param_match_rate_pct": 70.51,
+      "exact_match_pct": 0.0,
+      "execution_success_rate_pct": 93.76,
+      "coverage_rate_pct": 56.58
+    }
+  },
+  "overall": {
+    "n_evaluated": 591,
+    "task_success_pct": 0.0,
+    "tool_match_rate_pct": 84.01,
+    "param_match_rate_pct": 71.44,
+    "exact_match_pct": 0.0,
+    "execution_success_rate_pct": 92.27,
+    "coverage_rate_pct": 57.71
+  },
+  "note": "Native Protocol 官方 evaluator; A=Explicit E=Ambiguous I=Infeasible; Choice Adaptation 另行"
+}

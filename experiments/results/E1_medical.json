@@ -1,0 +1,152 @@
+{
+  "experiment": "E1 General Human-in-the-Loop Task Performance",
+  "honesty": "ONLY real measured cells. No modeling/interpolation/fractional-recovery anywhere.",
+  "columns": {
+    "dialop_planning_utility": {
+      "status": "REAL_ALL_ROWS",
+      "simulated": false,
+      "n": 134,
+      "metric": "normalized planning utility (achieved-worst)/(best-worst), official reward table",
+      "note": "Deterministic structural planning over official masked reward tables; no LLM. All 9 rows measured (each ask-method reveals B cells by its criterion)."
+    },
+    "clarifybench": {
+      "status": "REAL_AUTONOMOUS_ONLY",
+      "autonomous_measured": {
+        "n_evaluated": 591,
+        "task_success_pct": 0.0,
+        "tool_match_rate_pct": 84.01,
+        "param_match_rate_pct": 71.44,
+        "exact_match_pct": 0.0,
+        "execution_success_rate_pct": 92.27,
+        "coverage_rate_pct": 57.71
+      },
+      "per_subset": {
+        "A": {
+          "subset": "A",
+          "n_total": 214,
+          "n_done": 207,
+          "n_evaluated": 207,
+          "n_runerr": 0,
+          "task_success_pct": 0.0,
+          "tool_match_rate_pct": 79.17,
+          "param_match_rate_pct": 67.9,
+          "exact_match_pct": 0.0,
+          "execution_success_rate_pct": 92.34,
+          "coverage_rate_pct": 53.66
+        },
+        "E": {
+          "subset": "E",
+          "n_total": 242,
+          "n_done": 239,
+          "n_evaluated": 239,
+          "n_runerr": 0,
+          "task_success_pct": 0.0,
+          "tool_match_rate_pct": 89.51,
+          "param_match_rate_pct": 75.08,
+          "exact_match_pct": 0.0,
+          "execution_success_rate_pct": 91.31,
+          "coverage_rate_pct": 61.89
+        },
+        "I": {
+          "subset": "I",
+          "n_total": 148,
+          "n_done": 145,
+          "n_evaluated": 145,
+          "n_runerr": 0,
+          "task_success_pct": 0.0,
+          "tool_match_rate_pct": 81.85,
+          "param_match_rate_pct": 70.51,
+          "exact_match_pct": 0.0,
+          "execution_success_rate_pct": 93.76,
+          "coverage_rate_pct": 56.58
+        }
+      },
+      "ask_methods": "NOT RUN -> null (would require dedicated real per-method clarify-policy runs over 583 tasks; not executed; NOT modeled)."
+    },
+    "hilsql": {
+      "status": "REAL_AUTONOMOUS_ONLY",
+      "autonomous_measured": {
+        "solve_rate_pct": 0.0,
+        "n_tasks": 13,
+        "db_subset": "financial (only DB baked in public image)",
+        "note": "Native baseline on blocker tasks is EXPECTED LOW (HiL-Bench design: clarification needed). anchor_5 = official compare_pandas_outputs scorer runs + magnitude plausible. Full 100-task / 8-DB official run needs uv+sweagent+chromadb+docker MCP stack (blocker recorded)."
+      },
+      "ask_methods": "NOT RUN -> null (full HiL-Bench ask_human stack: docker MCP + sweagent + chromadb not available; blocker recorded; NOT modeled)."
+    }
+  },
+  "rows": {
+    "Autonomous Agent": {
+      "clarifybench": {
+        "task_success_pct": 0.0,
+        "tool_match_rate_pct": 84.01,
+        "param_match_rate_pct": 71.44,
+        "n_evaluated": 591,
+        "measured": true
+      },
+      "hilsql": {
+        "solve_rate_pct": 0.0,
+        "n_tasks": 13,
+        "measured": true
+      },
+      "dialop_planning_utility": 0.7497,
+      "dialop_human_seconds": 0.0,
+      "dialop_n": 134
+    },
+    "Compute-Matched Autonomous": {
+      "clarifybench": null,
+      "hilsql": null,
+      "dialop_planning_utility": 0.8337,
+      "dialop_human_seconds": 0.0,
+      "dialop_n": 134
+    },
+    "CLAM-API": {
+      "clarifybench": null,
+      "hilsql": null,
+      "dialop_planning_utility": 0.8369,
+      "dialop_human_seconds": 45.0,
+      "dialop_n": 134
+    },
+    "AwN": {
+      "clarifybench": null,
+      "hilsql": null,
+      "dialop_planning_utility": 0.786,
+      "dialop_human_seconds": 45.0,
+      "dialop_n": 134
+    },
+    "UoT": {
+      "clarifybench": null,
+      "hilsql": null,
+      "dialop_planning_utility": 0.787,
+      "dialop_human_seconds": 45.0,
+      "dialop_n": 134
+    },
+    "ATD": {
+      "clarifybench": null,
+      "hilsql": null,
+      "dialop_planning_utility": 0.787,
+      "dialop_human_seconds": 45.0,
+      "dialop_n": 134
+    },
+    "SAGE-Agent": {
+      "clarifybench": null,
+      "hilsql": null,
+      "dialop_planning_utility": 0.8877,
+      "dialop_human_seconds": 45.0,
+      "dialop_n": 134
+    },
+    "VoI Communication": {
+      "clarifybench": null,
+      "hilsql": null,
+      "dialop_planning_utility": 0.8877,
+      "dialop_human_seconds": 45.0,
+      "dialop_n": 134
+    },
+    "HumanChoice": {
+      "clarifybench": null,
+      "hilsql": null,
+      "dialop_planning_utility": 0.9034,
+      "dialop_human_seconds": 45.0,
+      "dialop_n": 134
+    }
+  }
+}

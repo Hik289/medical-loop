@@ -1,0 +1,55 @@
+{
+  "benchmark": "DialOp (Decision-Oriented Dialogue, Optimization)",
+  "metric": "normalized planning utility (achieved-worst)/(best-worst), official reward table",
+  "budget_cells": 3,
+  "n_tasks": 134,
+  "simulated": false,
+  "note": "Deterministic structural planning over official masked reward tables; no LLM. Ask-methods reveal B cells by their criterion; scored by official norm.",
+  "rows": {
+    "Autonomous Agent": {
+      "planning_utility": 0.7497,
+      "human_seconds": 0.0,
+      "n": 134
+    },
+    "Compute-Matched Autonomous": {
+      "planning_utility": 0.8337,
+      "human_seconds": 0.0,
+      "n": 134
+    },
+    "CLAM-API": {
+      "planning_utility": 0.8369,
+      "human_seconds": 45.0,
+      "n": 134
+    },
+    "AwN": {
+      "planning_utility": 0.786,
+      "human_seconds": 45.0,
+      "n": 134
+    },
+    "UoT": {
+      "planning_utility": 0.787,
+      "human_seconds": 45.0,
+      "n": 134
+    },
+    "ATD": {
+      "planning_utility": 0.787,
+      "human_seconds": 45.0,
+      "n": 134
+    },
+    "SAGE-Agent": {
+      "planning_utility": 0.8877,
+      "human_seconds": 45.0,
+      "n": 134
+    },
+    "VoI Communication": {
+      "planning_utility": 0.8877,
+      "human_seconds": 45.0,
+      "n": 134
+    },
+    "HumanChoice": {
+      "planning_utility": 0.9034,
+      "human_seconds": 45.0,
+      "n": 134
+    }
+  }
+}

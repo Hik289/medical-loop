@@ -1,0 +1,31 @@
+{
+  "n_tasks": 270,
+  "scorer": "simulated",
+  "simulated": true,
+  "note": "All human answers LLM-simulated (gpt-5.6-sol as doctor). Each per-method decision (ask/pred/revision) is a REAL cached LLM output; no modeling/interpolation. Formal human-augmentation conclusions require real doctors.",
+  "base_autonomous": {
+    "record_acc": 45.56,
+    "macro_f1": 43.47,
+    "per_class_recall": {
+      "A": 36.59,
+      "B": 65.22,
+      "C": 48.65
+    },
+    "aki_recall": 48.65,
+    "support": {
+      "A": 164,
+      "B": 69,
+      "C": 37
+    }
+  },
+  "E4": {
+    "Simulated Doctors (HumanChoice path)": {
+      "final_quality": 46.3,
+      "rescue": 0.74,
+      "harm": 0.0,
+      "choice_follow_through": 0.74,
+      "n_asked": 270
+    },
+    "_note": "Correct-Local-Choice Oracle & Controlled-Wrong-Choice rows require extra real revision caches (methods_e4.py); not yet run -> left empty honestly."
+  }
+}

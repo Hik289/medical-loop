@@ -1,0 +1,60 @@
+{
+  "n_tasks": 270,
+  "scorer": "simulated",
+  "simulated": true,
+  "note": "All human answers LLM-simulated (gpt-5.6-sol as doctor). Each per-method decision (ask/pred/revision) is a REAL cached LLM output; no modeling/interpolation. Formal human-augmentation conclusions require real doctors.",
+  "base_autonomous": {
+    "record_acc": 45.56,
+    "macro_f1": 43.47,
+    "per_class_recall": {
+      "A": 36.59,
+      "B": 65.22,
+      "C": 48.65
+    },
+    "aki_recall": 48.65,
+    "support": {
+      "A": 164,
+      "B": 69,
+      "C": 37
+    }
+  },
+  "E5": {
+    "Autonomous Branch-and-Aggregate": {
+      "final_quality": 45.56,
+      "medical_review": 43.47,
+      "net_rescue": 0.0,
+      "human_seconds": 0.0,
+      "api_cost_rel": 3.0
+    },
+    "Without G: Fixed Ask (proxy=PostHoc gate)": {
+      "final_quality": 46.3,
+      "medical_review": 44.28,
+      "net_rescue": 0.74,
+      "human_seconds": 54.8,
+      "api_cost_rel": 1.8
+    },
+    "Without Q: weaker question (proxy=UoT)": {
+      "final_quality": 44.44,
+      "medical_review": 42.15,
+      "net_rescue": -1.11,
+      "human_seconds": 48.3,
+      "api_cost_rel": 1.8
+    },
+    "Without A: Always Revised (=HumanChoice sim path)": {
+      "final_quality": 46.3,
+      "medical_review": 44.05,
+      "net_rescue": 0.74,
+      "human_seconds": 52.9,
+      "api_cost_rel": 1.8
+    },
+    "G+Q+A, Three EI": {
+      "final_quality": 46.3,
+      "medical_review": 44.05,
+      "net_rescue": 0.74,
+      "human_seconds": 52.9,
+      "api_cost_rel": 2.0
+    }
+  },
+  "E5_iter_curve": null,
+  "E5_iter_curve_note": "Real Iter0-3 retrain curve pending (ei_medical.py). NOT interpolated -> left null until real EI retrains land."
+}

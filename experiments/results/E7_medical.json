@@ -1,0 +1,21 @@
+{
+  "experiment": "E7 Cross-Domain and Unseen-Human Transfer",
+  "simulated": true,
+  "honesty": "Only the ClarifyBench->NoisyToolBench row is real (gpt-5.6-sol, n=200). Other transfer rows require trained G/Q/A module-transfer runs not executed -> null, NOT modeled.",
+  "rows": {
+    "ClarifyBench -> NoisyToolBench": {
+      "autonomous_quality_param_match_pct": 14.88,
+      "autonomous_tool_match_pct": 17.0,
+      "humanchoice_quality_param_match_pct": 47.71,
+      "humanchoice_tool_match_pct": 18.0,
+      "augmentation_gain_param_match_pct": 32.83,
+      "n": 200,
+      "measured": true,
+      "note": "HumanChoice = simulated asking the gold clarification (right local question). Real gpt-5.6-sol tool/param match; simulated-user labeled."
+    },
+    "Tool Tasks -> HiL-Bench SQL": null,
+    "General -> Medical, frozen G/Q/A": null,
+    "General -> Medical, dev probability calibration": null,
+    "Seen -> Unseen Participants": null
+  }
+}

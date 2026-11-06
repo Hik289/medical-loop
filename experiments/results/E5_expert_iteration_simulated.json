@@ -1,0 +1,1459 @@
+{
+  "experiment": "E5 Expert Iteration curve (medical, simulated participants)",
+  "simulated": true,
+  "participant": "gpt-5.6-sol simulated doctor (pipeline S3_SYS), n=2",
+  "config": {
+    "iters": 3,
+    "n_per_iter": 40,
+    "answers_per_task": 2,
+    "explore": 0.2,
+    "n_participants": 2,
+    "epochs": 30,
+    "workers": 2,
+    "timeout": 300,
+    "skip_onepass": false,
+    "limit_pool": 0,
+    "client": "real",
+    "lambda_H": 0.0005,
+    "collection_policy": "seed-42 modules of pi_k",
+    "seeds": [
+      42,
+      123,
+      456
+    ]
+  },
+  "anchor_2b": {
+    "anchor_2b_pass": true,
+    "n_train_patients": 114,
+    "n_test_patients": 270
+  },
+  "iter_curve": [
+    {
+      "iter": 0,
+      "test": {
+        "status": "measured",
+        "n_seeds": 3,
+        "per_seed": [
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 44.44,
+            "autonomous_quality": 45.56,
+            "rescue": 2.22,
+            "harm": 3.33,
+            "net_rescue": -1.11,
+            "net_rescue_ci95": [
+              -3.7,
+              1.48
+            ],
+            "asked_pct": 100.0,
+            "unnecessary_questions": 247,
+            "simulated_seconds_mean": 59.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": -1.12,
+            "record_acc": 44.44,
+            "macro_f1": 43.02,
+            "per_class_recall": {
+              "A": 35.37,
+              "B": 59.42,
+              "C": 56.76
+            },
+            "net_rescue_C_AKI": 8.11,
+            "seed": 42
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 44.44,
+            "autonomous_quality": 45.56,
+            "rescue": 2.22,
+            "harm": 3.33,
+            "net_rescue": -1.11,
+            "net_rescue_ci95": [
+              -3.7,
+              1.48
+            ],
+            "asked_pct": 100.0,
+            "unnecessary_questions": 247,
+            "simulated_seconds_mean": 59.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": -1.12,
+            "record_acc": 44.44,
+            "macro_f1": 43.02,
+            "per_class_recall": {
+              "A": 35.37,
+              "B": 59.42,
+              "C": 56.76
+            },
+            "net_rescue_C_AKI": 8.11,
+            "seed": 123
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 44.44,
+            "autonomous_quality": 45.56,
+            "rescue": 2.22,
+            "harm": 3.33,
+            "net_rescue": -1.11,
+            "net_rescue_ci95": [
+              -3.7,
+              1.48
+            ],
+            "asked_pct": 100.0,
+            "unnecessary_questions": 247,
+            "simulated_seconds_mean": 59.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": -1.12,
+            "record_acc": 44.44,
+            "macro_f1": 43.02,
+            "per_class_recall": {
+              "A": 35.37,
+              "B": 59.42,
+              "C": 56.76
+            },
+            "net_rescue_C_AKI": 8.11,
+            "seed": 456
+          }
+        ],
+        "final_quality": {
+          "mean": 44.44,
+          "std": 0.0
+        },
+        "rescue": {
+          "mean": 2.22,
+          "std": 0.0
+        },
+        "harm": {
+          "mean": 3.33,
+          "std": 0.0
+        },
+        "net_rescue": {
+          "mean": -1.11,
+          "std": 0.0
+        },
+        "asked_pct": {
+          "mean": 100.0,
+          "std": 0.0
+        },
+        "simulated_seconds_mean": {
+          "mean": 59.0,
+          "std": 0.0
+        },
+        "record_acc": {
+          "mean": 44.44,
+          "std": 0.0
+        },
+        "macro_f1": {
+          "mean": 43.02,
+          "std": 0.0
+        }
+      },
+      "train_log_seed42": null
+    },
+    {
+      "iter": 1,
+      "test": {
+        "status": "measured",
+        "n_seeds": 3,
+        "per_seed": [
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "seed": 42
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "seed": 123
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "seed": 456
+          }
+        ],
+        "final_quality": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "rescue": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "harm": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "net_rescue": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "asked_pct": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "simulated_seconds_mean": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "record_acc": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "macro_f1": {
+          "mean": 43.47,
+          "std": 0.0
+        }
+      },
+      "train_log_seed42": {
+        "A": {
+          "n": 1,
+          "ties_dropped": 1,
+          "fallback": "adopt-revision rule (insufficient A data)"
+        },
+        "Q": {
+          "n_pairs": 13,
+          "loss_curve": [
+            0.70758,
+            0.70031,
+            0.69354,
+            0.68728,
+            0.68163,
+            0.67603,
+            0.67061,
+            0.66516,
+            0.65947,
+            0.65363,
+            0.6477,
+            0.64171,
+            0.63546,
+            0.62883,
+            0.62197,
+            0.61476,
+            0.60729,
+            0.59965,
+            0.59185,
+            0.58381,
+            0.57557,
+            0.56712,
+            0.55833,
+            0.54922,
+            0.53979,
+            0.53011,
+            0.52015,
+            0.50993,
+            0.49951,
+            0.48891
+          ],
+          "steps": 30
+        },
+        "G": {
+          "n": 13,
+          "skipped_unanswered_q_t": 1,
+          "loss_curve": [
+            0.69954,
+            0.6943,
+            0.68908,
+            0.68392,
+            0.67885,
+            0.67377,
+            0.66851,
+            0.66318,
+            0.65777,
+            0.65222,
+            0.64639,
+            0.64034,
+            0.63413,
+            0.62766,
+            0.62096,
+            0.61395,
+            0.6067,
+            0.59916,
+            0.59122,
+            0.58295,
+            0.57436,
+            0.56548,
+            0.55634,
+            0.54685,
+            0.53705,
+            0.52699,
+            0.51647,
+            0.50565,
+            0.49458,
+            0.48329
+          ],
+          "steps": 30,
+          "pos_rate": 0.0
+        }
+      }
+    },
+    {
+      "iter": 2,
+      "test": {
+        "status": "measured",
+        "n_seeds": 3,
+        "per_seed": [
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "seed": 42
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "seed": 123
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "seed": 456
+          }
+        ],
+        "final_quality": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "rescue": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "harm": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "net_rescue": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "asked_pct": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "simulated_seconds_mean": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "record_acc": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "macro_f1": {
+          "mean": 43.47,
+          "std": 0.0
+        }
+      },
+      "train_log_seed42": {
+        "A": {
+          "n": 1,
+          "ties_dropped": 1,
+          "fallback": "adopt-revision rule (insufficient A data)"
+        },
+        "Q": {
+          "n_pairs": 16,
+          "loss_curve": [
+            0.70869,
+            0.70172,
+            0.69508,
+            0.68902,
+            0.6836,
+            0.6786,
+            0.67383,
+            0.66906,
+            0.66413,
+            0.65886,
+            0.65343,
+            0.64784,
+            0.64199,
+            0.63593,
+            0.6296,
+            0.62299,
+            0.61611,
+            0.60894,
+            0.60161,
+            0.59409,
+            0.58641,
+            0.57844,
+            0.57022,
+            0.56178,
+            0.55304,
+            0.54404,
+            0.5348,
+            0.52549,
+            0.5159,
+            0.50614
+          ],
+          "steps": 30
+        },
+        "G": {
+          "n": 11,
+          "skipped_unanswered_q_t": 16,
+          "loss_curve": [
+            0.70087,
+            0.69489,
+            0.68899,
+            0.68328,
+            0.67777,
+            0.67224,
+            0.66664,
+            0.66093,
+            0.65519,
+            0.64941,
+            0.64355,
+            0.63754,
+            0.63122,
+            0.62469,
+            0.61793,
+            0.61097,
+            0.60374,
+            0.59634,
+            0.58873,
+            0.5808,
+            0.57249,
+            0.56397,
+            0.55521,
+            0.54605,
+            0.53665,
+            0.52692,
+            0.51693,
+            0.50664,
+            0.4961,
+            0.48534
+          ],
+          "steps": 30,
+          "pos_rate": 0.0
+        }
+      }
+    },
+    {
+      "iter": 3,
+      "test": {
+        "status": "measured",
+        "n_seeds": 3,
+        "per_seed": [
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "seed": 42
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "seed": 123
+          },
+          {
+            "status": "measured",
+            "n_total": 270,
+            "n_measured": 270,
+            "n_error": 0,
+            "final_quality": 45.56,
+            "autonomous_quality": 45.56,
+            "rescue": 0.0,
+            "harm": 0.0,
+            "net_rescue": 0.0,
+            "net_rescue_ci95": [
+              0.0,
+              0.0
+            ],
+            "asked_pct": 0.0,
+            "unnecessary_questions": 0,
+            "simulated_seconds_mean": 0.0,
+            "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+            "augmentation_gain": 0.0,
+            "record_acc": 45.56,
+            "macro_f1": 43.47,
+            "per_class_recall": {
+              "A": 36.59,
+              "B": 65.22,
+              "C": 48.65
+            },
+            "net_rescue_C_AKI": 0.0,
+            "seed": 456
+          }
+        ],
+        "final_quality": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "rescue": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "harm": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "net_rescue": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "asked_pct": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "simulated_seconds_mean": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "record_acc": {
+          "mean": 45.56,
+          "std": 0.0
+        },
+        "macro_f1": {
+          "mean": 43.47,
+          "std": 0.0
+        }
+      },
+      "train_log_seed42": {
+        "A": {
+          "n": 1,
+          "ties_dropped": 1,
+          "fallback": "adopt-revision rule (insufficient A data)"
+        },
+        "Q": {
+          "n_pairs": 19,
+          "loss_curve": [
+            0.708,
+            0.7014,
+            0.69525,
+            0.68919,
+            0.68369,
+            0.67853,
+            0.6736,
+            0.66872,
+            0.66367,
+            0.65853,
+            0.65321,
+            0.64775,
+            0.64201,
+            0.63607,
+            0.63005,
+            0.62384,
+            0.61737,
+            0.61071,
+            0.6038,
+            0.59664,
+            0.58924,
+            0.58172,
+            0.57395,
+            0.56584,
+            0.55751,
+            0.54892,
+            0.54003,
+            0.53085,
+            0.5214,
+            0.51174
+          ],
+          "steps": 30
+        },
+        "G": {
+          "n": 13,
+          "skipped_unanswered_q_t": 31,
+          "loss_curve": [
+            0.70116,
+            0.69476,
+            0.68851,
+            0.68235,
+            0.67632,
+            0.67019,
+            0.66397,
+            0.65769,
+            0.6514,
+            0.6451,
+            0.63878,
+            0.63234,
+            0.62569,
+            0.61883,
+            0.61167,
+            0.60413,
+            0.59629,
+            0.58817,
+            0.5798,
+            0.5712,
+            0.5623,
+            0.5531,
+            0.54365,
+            0.53384,
+            0.52374,
+            0.51335,
+            0.50272,
+            0.49178,
+            0.48062,
+            0.46925
+          ],
+          "steps": 30,
+          "pos_rate": 0.0
+        }
+      }
+    }
+  ],
+  "collection_cost": [
+    {
+      "iter_collected": 0,
+      "n_tasks": 40,
+      "n_measured": 40,
+      "n_error": 0,
+      "simulated_answers": 80,
+      "api_calls_nominal": 248,
+      "tokens_nominal": 185301
+    },
+    {
+      "iter_collected": 1,
+      "n_tasks": 40,
+      "n_measured": 40,
+      "n_error": 0,
+      "simulated_answers": 14,
+      "api_calls_nominal": 112,
+      "tokens_nominal": 135100
+    },
+    {
+      "iter_collected": 2,
+      "n_tasks": 40,
+      "n_measured": 34,
+      "n_error": 6,
+      "simulated_answers": 14,
+      "api_calls_nominal": 102,
+      "tokens_nominal": 130573
+    }
+  ],
+  "ablations_on_final_modules": {
+    "G+Q+A (iter 3)": {
+      "status": "measured",
+      "n_seeds": 3,
+      "per_seed": [
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "seed": 42
+        },
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "seed": 123
+        },
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "seed": 456
+        }
+      ],
+      "final_quality": {
+        "mean": 45.56,
+        "std": 0.0
+      },
+      "rescue": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "harm": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "net_rescue": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "asked_pct": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "simulated_seconds_mean": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "record_acc": {
+        "mean": 45.56,
+        "std": 0.0
+      },
+      "macro_f1": {
+        "mean": 43.47,
+        "std": 0.0
+      }
+    },
+    "Without G: always ask": {
+      "status": "measured",
+      "n_seeds": 3,
+      "per_seed": [
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 44.81,
+          "autonomous_quality": 45.56,
+          "rescue": 2.22,
+          "harm": 2.96,
+          "net_rescue": -0.74,
+          "net_rescue_ci95": [
+            -3.7,
+            1.85
+          ],
+          "asked_pct": 100.0,
+          "unnecessary_questions": 248,
+          "simulated_seconds_mean": 48.1,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": -0.75,
+          "record_acc": 44.81,
+          "macro_f1": 43.51,
+          "per_class_recall": {
+            "A": 34.76,
+            "B": 62.32,
+            "C": 56.76
+          },
+          "net_rescue_C_AKI": 8.11,
+          "seed": 42
+        },
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.19,
+          "autonomous_quality": 45.56,
+          "rescue": 1.85,
+          "harm": 2.22,
+          "net_rescue": -0.37,
+          "net_rescue_ci95": [
+            -2.6,
+            1.85
+          ],
+          "asked_pct": 100.0,
+          "unnecessary_questions": 255,
+          "simulated_seconds_mean": 49.9,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": -0.37,
+          "record_acc": 45.19,
+          "macro_f1": 43.83,
+          "per_class_recall": {
+            "A": 34.15,
+            "B": 65.22,
+            "C": 56.76
+          },
+          "net_rescue_C_AKI": 8.11,
+          "seed": 123
+        },
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 44.81,
+          "autonomous_quality": 45.56,
+          "rescue": 1.48,
+          "harm": 2.22,
+          "net_rescue": -0.74,
+          "net_rescue_ci95": [
+            -2.96,
+            1.48
+          ],
+          "asked_pct": 100.0,
+          "unnecessary_questions": 255,
+          "simulated_seconds_mean": 49.5,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": -0.75,
+          "record_acc": 44.81,
+          "macro_f1": 43.48,
+          "per_class_recall": {
+            "A": 34.15,
+            "B": 63.77,
+            "C": 56.76
+          },
+          "net_rescue_C_AKI": 8.11,
+          "seed": 456
+        }
+      ],
+      "final_quality": {
+        "mean": 44.94,
+        "std": 0.18
+      },
+      "rescue": {
+        "mean": 1.85,
+        "std": 0.3
+      },
+      "harm": {
+        "mean": 2.47,
+        "std": 0.35
+      },
+      "net_rescue": {
+        "mean": -0.62,
+        "std": 0.17
+      },
+      "asked_pct": {
+        "mean": 100.0,
+        "std": 0.0
+      },
+      "simulated_seconds_mean": {
+        "mean": 49.17,
+        "std": 0.77
+      },
+      "record_acc": {
+        "mean": 44.94,
+        "std": 0.18
+      },
+      "macro_f1": {
+        "mean": 43.61,
+        "std": 0.16
+      }
+    },
+    "Without Q: seeded random pool question": {
+      "status": "measured",
+      "n_seeds": 3,
+      "per_seed": [
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "seed": 42
+        },
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "seed": 123
+        },
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "seed": 456
+        }
+      ],
+      "final_quality": {
+        "mean": 45.56,
+        "std": 0.0
+      },
+      "rescue": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "harm": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "net_rescue": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "asked_pct": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "simulated_seconds_mean": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "record_acc": {
+        "mean": 45.56,
+        "std": 0.0
+      },
+      "macro_f1": {
+        "mean": 43.47,
+        "std": 0.0
+      }
+    },
+    "Without A: always use revised action": {
+      "status": "measured",
+      "n_seeds": 3,
+      "per_seed": [
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "seed": 42
+        },
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "seed": 123
+        },
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "seed": 456
+        }
+      ],
+      "final_quality": {
+        "mean": 45.56,
+        "std": 0.0
+      },
+      "rescue": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "harm": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "net_rescue": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "asked_pct": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "simulated_seconds_mean": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "record_acc": {
+        "mean": 45.56,
+        "std": 0.0
+      },
+      "macro_f1": {
+        "mean": 43.47,
+        "std": 0.0
+      }
+    }
+  },
+  "onepass": {
+    "status": "measured",
+    "test": {
+      "status": "measured",
+      "n_seeds": 3,
+      "per_seed": [
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "seed": 42
+        },
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "seed": 123
+        },
+        {
+          "status": "measured",
+          "n_total": 270,
+          "n_measured": 270,
+          "n_error": 0,
+          "final_quality": 45.56,
+          "autonomous_quality": 45.56,
+          "rescue": 0.0,
+          "harm": 0.0,
+          "net_rescue": 0.0,
+          "net_rescue_ci95": [
+            0.0,
+            0.0
+          ],
+          "asked_pct": 0.0,
+          "unnecessary_questions": 0,
+          "simulated_seconds_mean": 0.0,
+          "simulated_seconds_note": "est_seconds per question type (pipeline simulated_time table), NOT measured human time",
+          "augmentation_gain": 0.0,
+          "record_acc": 45.56,
+          "macro_f1": 43.47,
+          "per_class_recall": {
+            "A": 36.59,
+            "B": 65.22,
+            "C": 48.65
+          },
+          "net_rescue_C_AKI": 0.0,
+          "seed": 456
+        }
+      ],
+      "final_quality": {
+        "mean": 45.56,
+        "std": 0.0
+      },
+      "rescue": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "harm": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "net_rescue": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "asked_pct": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "simulated_seconds_mean": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "record_acc": {
+        "mean": 45.56,
+        "std": 0.0
+      },
+      "macro_f1": {
+        "mean": 43.47,
+        "std": 0.0
+      }
+    },
+    "budget": {
+      "n_tasks": 120,
+      "simulated_answers": 240,
+      "api_calls_nominal": 775,
+      "tokens_nominal": 583368
+    },
+    "ei_budget": {
+      "n_tasks": 120,
+      "simulated_answers": 108,
+      "api_calls_nominal": 462
+    },
+    "matching_note": "tasks matched exactly; answers/API reported for both arms (not forced equal)"
+  }
+}

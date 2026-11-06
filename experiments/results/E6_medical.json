@@ -1,0 +1,74 @@
+{
+  "n_tasks": 270,
+  "scorer": "simulated",
+  "simulated": true,
+  "note": "All human answers LLM-simulated (gpt-5.6-sol as doctor). Each per-method decision (ask/pred/revision) is a REAL cached LLM output; no modeling/interpolation. Formal human-augmentation conclusions require real doctors.",
+  "base_autonomous": {
+    "record_acc": 45.56,
+    "macro_f1": 43.47,
+    "per_class_recall": {
+      "A": 36.59,
+      "B": 65.22,
+      "C": 48.65
+    },
+    "aki_recall": 48.65,
+    "support": {
+      "A": 164,
+      "B": 69,
+      "C": 37
+    }
+  },
+  "E6": {
+    "Information Gain (ATD/UoT)": {
+      "final_success": 44.44,
+      "delta_final_utility": -1.11,
+      "rescue": 1.85,
+      "harm": 2.96,
+      "human_seconds": 41.3,
+      "n_asked": 178,
+      "gain_per_minute": -0.006
+    },
+    "EVPI (SAGE)": {
+      "final_success": 46.3,
+      "delta_final_utility": 0.74,
+      "rescue": 1.48,
+      "harm": 0.74,
+      "human_seconds": 48.5,
+      "n_asked": 223,
+      "gain_per_minute": 0.0034
+    },
+    "Expected Utility (VoI)": {
+      "final_success": 45.56,
+      "delta_final_utility": 0.0,
+      "rescue": 0.37,
+      "harm": 0.37,
+      "human_seconds": 3.6,
+      "n_asked": 16,
+      "gain_per_minute": 0.0
+    },
+    "Ambiguity (CLAM)": {
+      "final_success": 45.56,
+      "delta_final_utility": 0.0,
+      "rescue": 0.0,
+      "harm": 0.0,
+      "human_seconds": 51.4,
+      "n_asked": 270,
+      "gain_per_minute": 0.0
+    },
+    "Learned Q (HumanChoice)": {
+      "final_success": 46.3,
+      "delta_final_utility": 0.74,
+      "rescue": 0.74,
+      "harm": 0.0,
+      "human_seconds": 52.9,
+      "n_asked": 270,
+      "gain_per_minute": 0.0031
+    }
+  },
+  "E6_blackwell_reversal": {
+    "n_pairs_checked": 1620,
+    "n_reversals": 168,
+    "reversal_rate": 10.37,
+    "note": "EIG-order vs EVPI-order reversals across real per-task criterion signals (Thm2 proxy)."
+  }
+}

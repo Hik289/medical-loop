@@ -1,0 +1,18 @@
+{
+  "benchmark": "NoisyToolBench",
+  "model": "gpt-5.6-sol",
+  "simulated_clarification": true,
+  "note": "Query only vs. query plus benchmark gold clarification. No human participant.",
+  "agg": {
+    "autonomous": {
+      "n": 200,
+      "tool_match_pct": 17.0,
+      "param_match_pct": 14.88
+    },
+    "humanchoice": {
+      "n": 200,
+      "tool_match_pct": 18.0,
+      "param_match_pct": 47.71
+    }
+  }
+}

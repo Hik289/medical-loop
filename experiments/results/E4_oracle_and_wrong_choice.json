@@ -1,0 +1,109 @@
+{
+  "experiment": "E4 Human Contribution: Oracle & Controlled-Wrong-Choice",
+  "simulated": true,
+  "note": "Oracle is a mechanism upper bound only; real-participant rows require humans and are not produced here.",
+  "hilsql": {
+    "domain": "HiL-Bench SQL (financial DB, Choice adaptation)",
+    "max_questions": 3,
+    "n_tasks": 13,
+    "rows": {
+      "Autonomous (no question)": {
+        "status": "measured",
+        "n": 13,
+        "final_quality_solve_rate": 0.0
+      },
+      "Correct Local Choice Oracle": {
+        "status": "measured",
+        "n": 13,
+        "n_error": 0,
+        "final_quality_solve_rate": 15.38,
+        "rescue": 15.38,
+        "harm": 0.0,
+        "net_rescue": 15.38,
+        "n_rescue": 2,
+        "n_harm": 0,
+        "net_rescue_ci95": [
+          0.0,
+          38.46
+        ],
+        "local_choice_accuracy": 100.0,
+        "choice_follow_through": {
+          "status": "null",
+          "value": null,
+          "reason": "no per-choice implementation check exists for SQL; only final official test available"
+        },
+        "human_correct_agent_failed": 84.62,
+        "human_correct_agent_failed_denominator": 13
+      },
+      "Simulated Task Owner (gpt-5.6-sol)": {
+        "status": "measured",
+        "n": 13,
+        "n_error": 0,
+        "final_quality_solve_rate": 15.38,
+        "rescue": 15.38,
+        "harm": 0.0,
+        "net_rescue": 15.38,
+        "n_rescue": 2,
+        "n_harm": 0,
+        "net_rescue_ci95": [
+          0.0,
+          38.46
+        ],
+        "local_choice_accuracy": 100.0,
+        "choice_follow_through": {
+          "status": "null",
+          "value": null,
+          "reason": "no per-choice implementation check exists for SQL; only final official test available"
+        },
+        "human_correct_agent_failed": 84.62,
+        "human_correct_agent_failed_denominator": 13
+      },
+      "Controlled Wrong Choice (stress, first blocker wrong)": {
+        "status": "measured",
+        "n": 13,
+        "n_error": 0,
+        "final_quality_solve_rate": 0.0,
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "n_rescue": 0,
+        "n_harm": 0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "local_choice_accuracy": 66.67,
+        "choice_follow_through": {
+          "status": "null",
+          "value": null,
+          "reason": "no per-choice implementation check exists for SQL; only final official test available"
+        },
+        "human_correct_agent_failed": null,
+        "human_correct_agent_failed_denominator": 0
+      },
+      "_wrong_vs_oracle_paired": {
+        "status": "measured",
+        "n": 13,
+        "baseline": "oracle",
+        "rescue": 0.0,
+        "harm": 15.38,
+        "net_rescue": -15.38,
+        "n_rescue": 0,
+        "n_harm": 2,
+        "net_rescue_ci95": [
+          -38.46,
+          0.0
+        ]
+      }
+    },
+    "llm_session": {
+      "calls": 130,
+      "errors": 0,
+      "tokens": 265471
+    }
+  },
+  "medical": {
+    "status": null,
+    "reason": "No archived medical oracle/wrong-choice result."
+  }
+}
