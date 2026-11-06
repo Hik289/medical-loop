@@ -1,130 +1,209 @@
-"""Render the paper-style HumanChoice overview. All content is conceptual."""
+"""Draw the HumanChoice method schematic as a standalone paper-style PNG."""
 from pathlib import Path
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle
+from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch, PathPatch, Polygon
+from matplotlib.path import Path as PlotPath
 
 plt.rcParams.update({
-    "font.family": "DejaVu Serif", "mathtext.fontset": "dejavuserif",
+    "font.family": "DejaVu Sans",
+    "mathtext.fontset": "dejavuserif",
     "savefig.facecolor": "white",
 })
-INK = "#162638"
-MUTED = "#4c5e70"
-BLUE = "#245c87"
-SKY = "#eaf3fa"
-BORDER = "#8facc1"
-TEAL = "#166865"
-MINT = "#e6f3f0"
-AMBER = "#86541b"
-CREAM = "#fbf2df"
-LINE = "#dce5ec"
 
-fig, ax = plt.subplots(figsize=(14.7, 5.9), dpi=205)
-fig.subplots_adjust(0, 0, 1, 1)
-ax.set(xlim=(0, 14.7), ylim=(0, 5.9), aspect="equal")
+INK, MUTED, RULE = "#182737", "#47586B", "#D9E2EB"
+BLUE, SKY, BLUE_LINE = "#20578C", "#EEF6FD", "#96BCDE"
+PURPLE, LILAC, PURPLE_LINE = "#66448E", "#F5EFFB", "#B99AD4"
+AMBER, CREAM, AMBER_LINE = "#8A511E", "#FEF5E8", "#DDB178"
+GREEN, MINT, GREEN_LINE = "#246951", "#EDF8F0", "#85B99D"
+NEUTRAL = "#F5F8FB"
+
+WIDTH, HEIGHT = 16.0, 5.80
+fig, ax = plt.subplots(figsize=(WIDTH, HEIGHT))
+fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
+ax.set(xlim=(0, WIDTH), ylim=(0, HEIGHT), aspect="equal")
 ax.axis("off")
 
 
-def text(x, y, s, fs=15, c=INK, *, ha="center", bold=False):
-    ax.text(x, y, s, size=fs, color=c, ha=ha, va="center",
-            fontweight="semibold" if bold else "normal", zorder=5)
+def label(x, y, s, size=13, color=INK, *, align="center", weight="normal", serif=False):
+    return ax.text(x, y, s, fontsize=size, color=color, ha=align, va="center",
+                   fontweight=weight, family="DejaVu Serif" if serif else "DejaVu Sans",
+                   zorder=8)
 
 
-def box(x, y, w, h, fill, edge=BORDER, radius=.12, lw=1.2):
-    ax.add_patch(FancyBboxPatch((x, y), w, h,
-                               boxstyle=f"round,pad=0,rounding_size={radius}",
-                               ec=edge, fc=fill, lw=lw, zorder=2))
+def card(x, y, w, h, fill, edge, *, r=.13, lw=1.05, z=2):
+    patch = FancyBboxPatch((x, y), w, h, boxstyle=f"round,pad=0,rounding_size={r}",
+                           facecolor=fill, edgecolor=edge, linewidth=lw, zorder=z)
+    ax.add_patch(patch)
+    return patch
 
 
-def path(points, c=BLUE, *, dashed=False, arrow=True, lw=1.6):
-    for (x1, y1), (x2, y2) in zip(points[:-2], points[1:-1]):
-        ax.plot((x1, x2), (y1, y2), color=c, lw=lw,
-                ls=(0, (4, 3)) if dashed else "-", solid_capstyle="round", zorder=3)
-    (x1, y1), (x2, y2) = points[-2:]
-    if arrow:
-        ax.add_patch(FancyArrowPatch((x1,y1), (x2,y2), arrowstyle="-|>",
-                                    mutation_scale=12, lw=lw, color=c,
-                                    shrinkA=0, shrinkB=0,
-                                    linestyle=(0, (4, 3)) if dashed else "-", zorder=3))
-    else:
-        ax.plot((x1,x2), (y1,y2), color=c, lw=lw, zorder=3)
+def line(points, color=BLUE, *, lw=1.45, dashed=False, z=5):
+    ax.plot(*zip(*points), color=color, lw=lw, solid_capstyle="round",
+            ls=(0, (3, 3)) if dashed else "-", zorder=z)
 
 
-def node(x, y, w, h, title, sub, fill=SKY, edge=BORDER, color=INK):
-    box(x, y, w, h, fill, edge)
-    text(x+w/2, y+h*.66, title, 15, color, bold=True)
-    text(x+w/2, y+h*.31, sub, 11.5, MUTED)
+def arrow(points, color=BLUE, *, lw=1.45, dashed=False, scale=12):
+    if len(points) > 2:
+        line(points[:-1], color, lw=lw, dashed=dashed)
+    ax.add_patch(FancyArrowPatch(points[-2], points[-1], arrowstyle="-|>",
+                                 mutation_scale=scale, color=color, lw=lw,
+                                 linestyle=(0, (3, 3)) if dashed else "-",
+                                 shrinkA=0, shrinkB=0, zorder=6))
 
 
-def record(cx, cy):
-    x, y = cx-.26, cy-.31
-    ax.add_patch(FancyBboxPatch((x, y), .52, .62,
-                               boxstyle="round,pad=0,rounding_size=.045",
-                               fc="white", ec=BLUE, lw=1.25, zorder=4))
-    for i, w in enumerate((.31, .26, .19)):
-        yy=y+.43-i*.12
-        ax.plot((x+.10,x+.10+w), (yy,yy), color=BLUE, lw=1.35, zorder=5)
+def curve_arrow(start, bends, end, color=BLUE, *, lw=1.45):
+    path = PlotPath([start, *bends, end],
+                    [PlotPath.MOVETO, PlotPath.CURVE4, PlotPath.CURVE4, PlotPath.CURVE4])
+    ax.add_patch(FancyArrowPatch(path=path, arrowstyle="-|>", mutation_scale=12,
+                                 color=color, lw=lw, zorder=6))
 
 
-# Side-by-side composition, fine blue rules, serif titles and bounded accents.
-text(.45, 5.50, "(a)  Autonomous agent", 19, ha="left", bold=True)
-text(4.62, 5.50, "(b)  HumanChoice: one local question", 19, ha="left", bold=True)
-ax.plot([.45, 4.04], [5.19, 5.19], c=LINE, lw=1.1)
-ax.plot([4.62, 14.24], [5.19, 5.19], c=LINE, lw=1.1)
-ax.plot([4.32, 4.32], [1.51, 5.06], c=LINE, lw=1.1)
+def check(x, y, color, scale=1):
+    line([(x-.07*scale, y), (x-.015*scale, y-.062*scale),
+          (x+.10*scale, y+.075*scale)], color, lw=1.6, z=9)
 
-box(.78, 3.92, 2.93, .87, "white")
-record(1.24, 4.35)
-text(1.67, 4.47, "Task evidence", 15, ha="left", bold=True)
-text(1.67, 4.17, "Current state", 11.5, MUTED, ha="left")
-path([(2.245,3.92),(2.245,3.60)])
-node(.78,2.72,2.93,.88,r"Base agent $B$",r"Proposes action $a_0$")
-path([(2.245,2.72),(2.245,2.39)])
-node(.78,1.52,2.93,.87,"Execute and finish",r"Use $a_0$ without a question","white")
 
-# Main row.
-node(4.62,3.92,2.10,.87,r"Base agent $B$","Action + question pool")
-node(7.05,3.92,2.18,.87,r"Select question $Q$","One local choice")
-node(9.57,3.92,2.00,.87,r"Ask gate $G$","Ask now or wait?")
-node(12.18,3.92,2.06,.87,"Wait",r"Use $a_0$; can ask later","white",BORDER,BLUE)
-for a,b in ((6.72,7.05),(9.23,9.57),(11.57,12.18)):
-    path([(a,4.355),(b,4.355)])
+def sheet(cx, cy, color, edge, *, scale=1, accepted=False, fill="white"):
+    w, h = .54*scale, .70*scale
+    x, y = cx-w/2, cy-h/2
+    fold = .13*scale
+    outline = [(x,y), (x+w,y), (x+w,y+h-fold), (x+w-fold,y+h), (x,y+h)]
+    ax.add_patch(Polygon(outline, closed=True, facecolor=fill, edgecolor=edge,
+                         lw=1.15, joinstyle="round", zorder=4))
+    line([(x+w-fold,y+h), (x+w-fold,y+h-fold), (x+w,y+h-fold)],
+         edge, lw=.85)
+    for j, length in enumerate((.30,.23,.28)):
+        yy = y+h-(.24+j*.11)*scale
+        line([(x+.10*scale,yy),(x+(.10+length)*scale,yy)], color, lw=1.1)
+    if accepted:
+        ax.add_patch(Circle((x+w,y+.08*scale), .137*scale, fc="white",
+                            ec=color, lw=1.1, zorder=7))
+        check(x+w-.014*scale, y+.079*scale, color, scale*.66)
 
-# Lower row: the Ask branch consumes the human opportunity once.
-path([(10.57,3.92),(10.57,3.59),(8.65,3.59),(8.65,3.22)],TEAL)
-text(9.62,3.75,"Ask",11.5,TEAL,bold=True)
-box(4.62,1.52,4.42,1.70,MINT,"#6baba2")
-text(4.88,2.98,"Human selects one option",14.5,TEAL,ha="left",bold=True)
-text(4.88,2.64,"Does the record establish chronicity?",12,ha="left")
-for y,label,picked in ((2.31,"Yes",False),(2.02,"No",False),(1.73,"Insufficient evidence",True)):
-    ax.add_patch(Circle((4.98,y), .067, ec=TEAL, fc="white",lw=1.0,zorder=4))
-    if picked:
-        ax.add_patch(Circle((4.98,y), .033, ec="none", fc=TEAL,zorder=5))
-    text(5.17,y,label,11.1,TEAL if picked else INK,ha="left",bold=picked)
 
-node(9.40,1.52,2.10,1.11,r"Base agent $B$",r"Proposes revision $a_1$",SKY)
-node(11.88,1.52,2.36,1.11,r"Action selector $A$",r"Choose $a_0$ or $a_1$; finish",SKY)
-path([(9.04,2.07),(9.40,2.07)],TEAL)
-path([(11.50,2.07),(11.88,2.07)])
-# Preserve a0 as an option after the human answers.
-path([(4.62,4.35),(4.47,4.35),(4.47,1.32),(13.06,1.32),(13.06,1.52)],
-     BLUE,dashed=True,lw=1.15)
-text(11.86,1.22,r"retain $a_0$",9.8,BLUE)
+def questions(cx, cy):
+    for dx, dy in ((.20,.13),(.10,.063),(0,0)):
+        card(cx-.43+dx, cy-.33+dy, .86, .66, "white", PURPLE_LINE, r=.07, z=4)
+    for j in range(3):
+        y = cy+.16-j*.16
+        selected = j == 1
+        ax.add_patch(Circle((cx-.26, y), .042, ec=PURPLE, lw=1.05,
+                            fc=PURPLE if selected else "white", zorder=7))
+        line([(cx-.14,y),(cx+(.25 if selected else .17),y)],
+             PURPLE if selected else PURPLE_LINE, lw=1.4)
 
-# Training is visually separate from the runtime paths.
-box(.45,.35,13.79,.78,"#f6f8fb",LINE,radius=.10,lw=1.0)
-text(.72,.75,"Expert Iteration",14.7,ha="left",bold=True)
-text(3.10,.75,"Replay matched branches",12.2,ha="left")
-path([(5.44,.75),(5.84,.75)],MUTED,lw=1.25)
-text(6.04,.75,"Score completed tasks",12.2,ha="left")
-path([(8.24,.75),(8.64,.75)],MUTED,lw=1.25)
-text(8.88,.75,r"Update $A\ \rightarrow\ Q\ \rightarrow\ G$",13,ha="left",bold=True)
-text(13.93,.75,"Train only",10.6,MUTED,ha="right")
+
+def agent(cx, cy):
+    card(cx-.38, cy-.26, .76, .52, "white", BLUE_LINE, r=.12, z=4)
+    line([(cx,cy+.27),(cx,cy+.36)],BLUE,lw=1.1)
+    ax.add_patch(Circle((cx,cy+.402),.043,fc=BLUE,ec="none",zorder=6))
+    card(cx-.27,cy-.14,.54,.28,SKY,BLUE_LINE,r=.11,lw=.8,z=5)
+    for dx in (-.105,.105):
+        ax.add_patch(Circle((cx+dx,cy),.036,fc=BLUE,ec="none",zorder=6))
+    line([(cx-.43,cy-.075),(cx-.43,cy+.075)],BLUE,lw=2.0)
+    line([(cx+.43,cy-.075),(cx+.43,cy+.075)],BLUE,lw=2.0)
+
+
+def split_icon(cx, cy):
+    ax.add_patch(Polygon([(cx-.22,cy),(cx,cy+.19),(cx+.22,cy),(cx,cy-.19)],
+                         closed=True, ec=AMBER, fc="white", lw=1.15, zorder=4))
+    line([(cx-.46,cy),(cx-.22,cy)], AMBER)
+    arrow([(cx+.22,cy),(cx+.34,cy),(cx+.34,cy+.25),(cx+.52,cy+.25)], AMBER, scale=8)
+    arrow([(cx+.22,cy),(cx+.34,cy),(cx+.34,cy-.25),(cx+.52,cy-.25)], AMBER, scale=8)
+
+
+def person(cx, cy):
+    ax.add_patch(Circle((cx,cy+.16),.143,fc="white",ec=GREEN,lw=1.25,zorder=6))
+    outline = PlotPath([(cx-.24,cy-.20), (cx-.23,cy+.09), (cx+.23,cy+.09),
+                        (cx+.24,cy-.20), (cx-.24,cy-.20)],
+                       [PlotPath.MOVETO,PlotPath.CURVE4,PlotPath.CURVE4,
+                        PlotPath.CURVE4,PlotPath.CLOSEPOLY])
+    ax.add_patch(PathPatch(outline, fc="#CBE5D5", ec=GREEN, lw=1.15, zorder=6))
+
+
+def stage(x, w, title, caption, fill, edge, color):
+    y, h = 2.34, 1.67
+    card(x, y, w, h, fill, edge)
+    label(x+w/2, y+h-.27, title, 14.0, color, weight="semibold")
+    line([(x+.18,y+h-.50),(x+w-.18,y+h-.50)], edge, lw=.75, z=4)
+    label(x+w/2,y+.25,caption,11.0,MUTED)
+    return x+w/2
+
+
+# Inference is read left to right. The wait path returns at a later state.
+label(.39, 5.43, "At inference", 19.5, weight="semibold", align="left", serif=True)
+line([(.40,5.12),(15.59,5.12)], RULE, lw=1.0, z=1)
+c = stage(.40, 2.47, "Fixed agent", "Draft action and questions", SKY, BLUE_LINE, BLUE)
+agent(c-.45, 3.15)
+arrow([(c+.04,3.15),(c+.24,3.15)],BLUE,lw=1.0,scale=8)
+sheet(c+.52, 3.16, BLUE, BLUE_LINE, scale=.69)
+c = stage(3.18, 2.48, "Question selector", "Choose a local question", LILAC, PURPLE_LINE, PURPLE)
+questions(c-.08, 3.10)
+c = stage(5.97, 2.21, "Ask gate", "Ask now or wait", CREAM, AMBER_LINE, AMBER)
+split_icon(c-.045, 3.17)
+
+x, w = 8.83, 3.19
+card(x,2.34,w,1.67,MINT,GREEN_LINE)
+label(x+w/2,3.74,"Human judgment",14.0,GREEN,weight="semibold")
+line([(x+.18,3.51),(x+w-.18,3.51)],GREEN_LINE,lw=.75,z=4)
+person(9.25, 2.99)
+card(9.64, 2.66, 2.18, .67, "white", GREEN_LINE, r=.075, z=4)
+label(9.78,3.135,"Is chronicity established?",10.2,align="left",weight="medium")
+ax.add_patch(Circle((9.84,2.878),.066,fc=MINT,ec=GREEN,lw=1,zorder=6))
+check(9.832,2.877,GREEN,.46)
+label(9.97,2.878,"Evidence is insufficient",10.1,GREEN,align="left")
+
+c = stage(12.39, 3.20, "Action selector", "Choose an action and execute", SKY, BLUE_LINE, BLUE)
+sheet(c-.47, 3.15, BLUE, BLUE_LINE, scale=.73)
+label(c-.03,3.17,"or",10.5,MUTED)
+sheet(c+.40,3.15,GREEN,GREEN_LINE,scale=.73)
+label(c-.47,2.77,"Original",8.7,BLUE)
+label(c+.40,2.77,"Revised",8.7,GREEN)
+
+for left,right in ((2.87,3.18),(5.66,5.97)):
+    arrow([(left,3.13),(right,3.13)])
+arrow([(8.18,3.13),(8.83,3.13)],GREEN)
+label(8.50,3.33,"Ask",9.8,GREEN,weight="semibold")
+arrow([(12.02,3.13),(12.39,3.13)],GREEN)
+
+# A raised return path makes the alternative explicit without a second pipeline.
+arrow([(7.08,4.01),(7.08,4.61),(1.64,4.61),(1.64,4.01)], AMBER, dashed=True)
+label(4.36,4.86,"Wait: execute the draft and retain the option to ask",11.4,AMBER)
+# GPT revises the draft after the response; the original remains a candidate.
+label(12.21,2.09,"The reply informs a revised action.",10.9,GREEN,serif=True)
+
+# Replay and updates are separate from the online decision path.
+card(.40,.26,15.19,1.42,NEUTRAL,RULE,r=.11)
+label(.65,1.39,"Expert Iteration",16.0,weight="semibold",align="left",serif=True)
+label(.65,.89,"Learn from completed branches",10.9,MUTED,align="left")
+line([(4.26,.52),(4.26,1.41)],RULE,lw=1.0,z=4)
+
+# Two observed branches, followed by an external evaluation.
+for y,name,col,fc,ec in ((1.23,"Ask",GREEN,MINT,GREEN_LINE),(.69,"Wait",AMBER,CREAM,AMBER_LINE)):
+    card(4.58,y-.145,.83,.29,fc,ec,r=.065,z=4)
+    label(4.995,y,name,10.3,col,weight="semibold")
+    curve_arrow((5.43,y),((5.68,y),(5.66,.96)),(5.98,.96),col,lw=1.15)
+label(6.16,.96,"Replay",11.6,INK,align="left",weight="semibold")
+arrow([(7.18,.96),(7.57,.96)],MUTED,lw=1.20)
+sheet(7.99,.96,BLUE,BLUE_LINE,scale=.67,accepted=True)
+label(8.40,1.10,"Score outcomes",11.7,INK,align="left",weight="semibold")
+label(8.40,.80,"Quality and cost",9.7,MUTED,align="left")
+arrow([(10.07,.96),(10.45,.96)],MUTED,lw=1.20)
+label(10.71,.96,"Update",11.7,INK,align="left",weight="semibold")
+for x,s,col,fc,ec in ((11.90,"A",BLUE,SKY,BLUE_LINE),
+                      (12.90,"Q",PURPLE,LILAC,PURPLE_LINE),
+                      (13.90,"G",AMBER,CREAM,AMBER_LINE)):
+    card(x,.73,.58,.46,fc,ec,r=.07,z=4)
+    label(x+.29,.96,s,13.0,col,weight="semibold")
+for x in (12.48,13.48):
+    arrow([(x+.06,.96),(x+.34,.96)],MUTED,lw=1.10,scale=10)
 
 out = Path(__file__).resolve().parents[1] / "assets" / "humanchoice-intuition.png"
 out.parent.mkdir(parents=True, exist_ok=True)
-fig.savefig(out, dpi=205, metadata={"Software": "Matplotlib", "Title": "HumanChoice overview"})
+fig.savefig(out, dpi=200, metadata={"Software": "Matplotlib", "Title": "HumanChoice overview"})
 plt.close(fig)
 print(out.name)
