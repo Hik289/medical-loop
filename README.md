@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img src="assets/humanchoice-intuition.png" alt="HumanChoice selects a local question, decides whether to ask or wait, and chooses an action after a human reply. Expert Iteration learns from completed branches.">
+  <img src="assets/humanchoice-figurex.png" alt="HumanChoice selects a local question, decides whether to ask or wait, and chooses an action after a human reply. Expert Iteration learns from completed branches.">
 </p>
 
 > A local answer can change the next decision. HumanChoice learns when that answer is worth asking for, while the agent stays responsible for the task.
