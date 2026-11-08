@@ -1,7 +1,7 @@
 <h1 align="center">HumanChoice</h1>
 
 <p align="center">
-  <strong>Learning When and What to Ask through Outcome-Grounded Expert Iteration</strong>
+  <strong>Learning when to ask, what to ask, and how to use the answer</strong>
 </p>
 
 <p align="center">
@@ -10,24 +10,26 @@
 </p>
 
 <p align="center">
-  <img src="assets/humanchoice-figurex.png" alt="HumanChoice selects a local question, decides whether to ask or wait, and chooses an action after a human reply. Expert Iteration learns from completed branches.">
+  <img src="assets/humanchoice-overview.png" alt="HumanChoice picks a question, asks now or continues the task, and chooses an action after a person replies. Training uses the results of completed tasks.">
 </p>
 
-> A local answer can change the next decision. HumanChoice learns when that answer is worth asking for, while the agent stays responsible for the task.
+HumanChoice lets an agent ask for help with a specific decision while it continues to handle the rest of the task. It learns which question to ask, when to ask it, and how to use the answer.
 
-## At a glance
+## How it works
 
-| Component | Role |
+| Module | What it decides |
 | --- | --- |
-| **Question Selector · Q** | Ranks candidate questions by the outcomes they produce. |
-| **Ask Gate · G** | Compares asking now with acting and retaining the option to ask later. |
-| **Action Selector · A** | Chooses between the original action and a revision informed by the reply. |
+| **Question Selector · Q** | Which question is most likely to help the agent complete the task. |
+| **Ask Gate · G** | Whether to ask now or continue and keep the chance to ask later. |
+| **Action Selector · A** | Whether to use the original action or a revised action based on the answer. |
 
-A fixed language model generates candidate questions and actions. During **Expert Iteration**, the system replays alternative branches, scores their completed outcomes, and updates **A → Q → G**. At inference, the agent asks only when the gate selects Ask.
+A fixed language model writes the questions and proposes the actions. The agent keeps its original action available, so a person's answer does not automatically replace it.
+
+During **Expert Iteration**, the training process runs alternative choices and checks the final results. A learns which action works better. Q learns which question helps under A's current choices. G then learns whether asking that question now is better than waiting. The updated agent runs more training tasks to collect new examples.
 
 ## Quick start
 
-From the repository root:
+Run these commands from the project folder. They install the dependencies and check the saved result files without calling a model.
 
 ~~~bash
 python -m venv .venv
@@ -36,13 +38,13 @@ python -m pip install -r requirements.txt
 python scripts/check_results.py
 ~~~
 
-The [reproduction guide](docs/reproduction.md) lists the experiment entry points. The [results archive](experiments/results/) contains the aggregate outputs.
+See [how to run the experiments](docs/reproduction.md) for the available scripts and data setup. The [saved results](experiments/results/) contain summary scores from the recorded runs.
 
 ## Citation
 
 ~~~bibtex
 @misc{humanchoice,
   title = {HumanChoice: Learning When and What to Ask through Outcome-Grounded Expert Iteration},
-  note  = {Research code and experiment artifacts}
+  note  = {Research code and saved experiment results}
 }
 ~~~

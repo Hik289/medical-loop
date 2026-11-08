@@ -1,8 +1,10 @@
-# Reproduction
+# Running the experiments
 
-## Offline checks
+Run all commands from the project folder. Install the packages in `requirements.txt` first.
 
-From the repository root, install the requirements and run:
+## Local checks
+
+These commands work without medical records or model credentials:
 
 ~~~bash
 python experiments/anchor2_assert.py
@@ -11,30 +13,41 @@ python figures/draw_intuition.py
 python figures/legacy/fig1_core_finding_code.py
 ~~~
 
-The first two commands check metric invariants and the arithmetic of the published aggregates. The last two render the programmatic schematic and the archived paper-results plot. All four are offline. Generated outputs go under the ignored run directory. The illustrated README overview is a separate PNG under `assets/`.
+- `anchor2_assert.py` checks that the scoring functions match examples with known answers.
+- `check_results.py` checks the arithmetic in the saved result summaries.
+- `draw_intuition.py` draws the earlier schematic.
+- `fig1_core_finding_code.py` draws the paper's results plot from saved summaries.
 
-## Experiment entry points
+These checks run locally. Generated files go into the ignored `runs/` folder. The illustrated README image is a separate PNG in `assets/`.
 
-| Entry point | Inputs | Scope |
+## Available scripts
+
+| Script | What you need | What it does |
 | --- | --- | --- |
-| `experiments/anchor3_split_assert.py` | Locally authorized train/test JSONL | Audits the archived cohort and writes a local split map. Expected counts reflect this cohort. |
-| `experiments/anchor1_step2.py` | Local cohort and approved compatible endpoint | Development or test few-shot baseline. The archived selected recipe uses three demonstrations per class. |
-| `experiments/autonomous_agent.py` | Local cohort and approved compatible endpoint | Original autonomous baseline and per-record local output. |
-| `experiments/pipeline.py` | Local cohort, split map, approved endpoint | S0–S8 minibatch validation with simulated responses. Its single-question Q targets and unchanged replay targets are prototype checks, not full pairwise/three-round paper reproduction. |
-| `experiments/train_modules.py` | Local run directory with generated module feature arrays | Trains the three archived small MLPs on their assigned training groups. |
-| `experiments/doctor_pilot/` | Local records or question table | Candidate selection, questionnaire skeleton, and formatting. The historical fill runner is not in the archived source. |
-| `experiments/data/` | Local cohort | Field profiles and the supervised leakage probe. |
-| `experiments/cb_native_run.sh`, `experiments/cb_aggregate.py` | [Upstream ClarifyBench checkout](https://github.com/MananSuri27/ClarifyBench) and its dependencies | Native autonomous evaluation and aggregation. The shell wrapper needs Bash and GNU timeout. |
+| `experiments/anchor3_split_assert.py` | Authorized local training and test records | Checks patient separation, excluded fields, and missing values. Saves the patient split for later runs. Its expected counts are specific to the original dataset. |
+| `experiments/anchor1_step2.py` | Local records and an approved model service | Runs the baseline with class definitions and examples. The saved selected setting uses three examples per class. |
+| `experiments/autonomous_agent.py` | Local records and an approved model service | Runs the original agent without asking for help and saves each prediction locally. |
+| `experiments/pipeline.py` | Local records, a saved split, and an approved model service | Checks the complete workflow on a small batch using model-generated replies. It uses simplified training labels and repeats training on the same labels. |
+| `experiments/train_modules.py` | Feature files from a local run | Trains the small networks for A, Q, and G. |
+| `experiments/doctor_pilot/` | Local records or a question table | Selects records, prepares a blank questionnaire, and formats the answer key. The script used to fill the original question table was not saved. |
+| `experiments/data/` | Local records | Summarizes fields and compares a classifier using all fields with one that excludes later outcomes. |
+| `experiments/cb_native_run.sh` and `experiments/cb_aggregate.py` | The [original ClarifyBench project](https://github.com/MananSuri27/ClarifyBench) and its dependencies | Runs the baseline through ClarifyBench's own interface and combines the scores. The shell script needs Bash and GNU timeout. |
 
-### Restricted medical inputs
+## Medical records
 
-Set `HUMANCHOICE_DATA_DIR` to your authorized local directory containing `train.jsonl` and `test.jsonl`. The reader expects one record per line, with structured fields serialized in `question` and a cohort label in `answer`. The cohort extraction recipe is not in the archived code. Obtaining MIMIC-IV access does not itself recreate the exact cohort. Use a private `HUMANCHOICE_RUN_DIR` for generated files.
+Set `HUMANCHOICE_DATA_DIR` to an authorized local folder containing `train.jsonl` and `test.jsonl`. Each line must contain a JSON record with the structured fields stored as text in `question` and the record label in `answer`.
+
+The code for selecting the original patient group was not saved. Access to MIMIC-IV therefore does not, by itself, recreate the exact dataset. Set `HUMANCHOICE_RUN_DIR` to a private folder for generated files.
+
+Check the data before running the model:
 
 ~~~bash
 python experiments/anchor3_split_assert.py
 ~~~
 
-The live medical runners are disabled by default. Before enabling them, follow [PhysioNet's data-use and service guidance](https://physionet.org/news/post/llm-responsible-use/) and your institutional requirements. For an approved setup, supply `OPENAI_BASE_URL` and `OPENAI_API_KEY` at runtime, then opt in with `HUMANCHOICE_ALLOW_RECORD_API=1`. No endpoint or credential is supplied. The fixed model name can be overridden with `HUMANCHOICE_MODEL`. Never commit generated record-level artifacts.
+Calls that send medical records to a model service are disabled by default. Before enabling them, follow [PhysioNet's guidance for using records with model services](https://physionet.org/news/post/llm-responsible-use/) and your institution's requirements.
+
+For an approved service, set `OPENAI_BASE_URL` and `OPENAI_API_KEY` in your environment, then set `HUMANCHOICE_ALLOW_RECORD_API=1`. Use `HUMANCHOICE_MODEL` to change the model name if needed. Keep generated records and responses out of Git.
 
 ~~~bash
 python experiments/anchor1_step2.py --split dev --fewshot 3 --effort high
@@ -42,9 +55,11 @@ python experiments/anchor1_step2.py --split test --fewshot 3 --effort high
 python experiments/pipeline.py --run_id smoke_batch --n_batch 20 --workers 2
 ~~~
 
-### Public benchmark wrapper
+The `--fewshot` value is the number of examples per class. Development runs help choose a setting; test runs evaluate the chosen setting.
 
-Configure the upstream project first. Run from this repository's root with `CLARIFYBENCH_ROOT` set to your upstream checkout.
+## ClarifyBench
+
+Install and configure ClarifyBench first. Set `CLARIFYBENCH_ROOT` to that project's local folder, then run:
 
 ~~~bash
 bash experiments/cb_native_run.sh A 4 420
@@ -53,6 +68,12 @@ bash experiments/cb_native_run.sh I 4 420
 python experiments/cb_aggregate.py
 ~~~
 
-## Archived summaries versus full reruns
+The first argument chooses the benchmark subset. The next arguments set the number of parallel jobs and the time limit per task in seconds. Completed tasks are reused when you restart a run.
 
-All experiment and figure source files found in the project snapshot were reviewed for release. Some E1–E8 summaries point to job-specific scripts or artifacts absent from the archived tree. In particular, the historical HiL-Bench SQL runner, the full medical cache, the dedicated three-round Expert Iteration/transfer drivers, and some benchmark adapters were unavailable. Their reviewed aggregate outputs remain in the [experiment ledger](results.md); the repository does not claim end-to-end reproduction of those runs.
+## Saved results and complete reruns
+
+The repository includes the experiment and figure scripts found in the project copy used for this release. Some saved results came from separate scripts that were not in that copy: the original HiL-Bench SQL runner, the full medical prediction cache, the full Expert Iteration and transfer drivers, and some benchmark adapters.
+
+The [experiment summary](results.md) explains which runs produced the saved scores. The small-batch workflow checks that the main stages work together; it does not recreate every reported experiment.
+
+The model prompts and dataset field names remain exactly as used in the recorded runs.

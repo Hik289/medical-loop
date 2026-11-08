@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""cb_aggregate.py — 汇总 ClarifyBench Native 结果 (anchor_5)。
-官方指标: evaluation.correctness (tool_match_rate/param_match_rate/exact_match),
-          evaluation.execution.success_rate, evaluation.coverage.coverage_rate,
-          evaluation.success (task success)。按子集 A/E/I 分别 + 总体。"""
+"""
+Combine scores from completed ClarifyBench tasks.
+
+Read the benchmark's tool, parameter, exact-match, execution, coverage, and
+task-success scores. Report each subset and the combined completed tasks.
+"""
 import argparse, json, glob, os, sys
 from datetime import datetime, timezone, timedelta
 import numpy as np
@@ -42,7 +44,7 @@ def agg_subset(subset, data):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--benchmark-root", default=os.environ.get("CLARIFYBENCH_ROOT"))
+    parser.add_argument("--benchmark-root", default=os.environ.get("CLARIFYBENCH_ROOT"), help='Local folder containing the original ClarifyBench project')
     args = parser.parse_args()
     if not args.benchmark_root:
         parser.error("Set --benchmark-root or CLARIFYBENCH_ROOT")
@@ -51,7 +53,7 @@ def main():
         parser.error(f"Expected the upstream data directory at {data}")
     Path(RUNS).mkdir(parents=True, exist_ok=True)
     res={s:agg_subset(s, data) for s in ["A","E","I"]}
-    # 总体 (加权合并 evaluated)
+    # Combine all completed tasks across subsets.
     allf=[]
     for s in ["A","E","I"]: allf+=glob.glob(f"{RUNS}/results_{s}/*_RESULT.json")
     ts=[];tm=[];pm=[];ex=[];es=[];cv=[]
@@ -71,7 +73,7 @@ def main():
     out={"benchmark":"ClarifyBench","protocol":"Native","agent":"baseline (Autonomous, gpt-5.6-sol)",
          "anchor":"H0.anchor_5","timestamp":datetime.now(JST).isoformat(),
          "per_subset":res,"overall":overall,
-         "note":"Native Protocol 官方 evaluator; A=Explicit E=Ambiguous I=Infeasible; Choice Adaptation 另行"}
+         "note":"Uses the original benchmark evaluator. A: explicit, E: ambiguous, I: infeasible. Multiple-choice runs are reported separately."}
     with open(f"{RUNS}/clarifybench_native_summary.json","w",encoding="utf-8") as fp:
         json.dump(out,fp,ensure_ascii=False,indent=2)
     print(json.dumps(out,ensure_ascii=False,indent=2))

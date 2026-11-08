@@ -1,20 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-build_question_table.py — 医生题表组装 (骨架; S2 候选题由研究执行器生成)
+Create a blank question table from selected records.
 
-两阶段:
-  阶段1 (本地, 现在可做): 读 pilot_candidates + 每患者的 agent_visible 证据, 生成题表骨架
-                          (每患者一行占位, 证据 spans 填好, 候选题列留空 [PENDING_S2])
-  阶段2 (候选题由研究执行器生成): 调 S2 候选题生成 (pipeline.py 的 gen_questions), 填入 substantive_options
-                          → 输出最终医生题表 (CSV + markdown, 对齐 exp_design §5.2)
-
-本脚本实现阶段1 (--stage skeleton)；历史阶段2的专用运行器未随代码保存。
-
-题表字段 (exp_design §5.2):
-  task_id | checkpoint | source_record_id | question(题干) | question_type |
-  evidence(spans, agent_visible) | option_c1/c2[/c3] | other(insufficient/none/skip) |
-  [doctor_answer:医生填] | [doctor_seconds:系统计时]
+Copy each record's allowed evidence into the table and leave the question,
+options, and response columns empty. This script builds the skeleton only;
+the script used to fill the historical question table was not saved.
 """
 import json, re, os, csv, argparse, hashlib
 from datetime import datetime, timezone, timedelta
@@ -39,7 +30,7 @@ AGENT_VISIBLE = [
     "hemoglobin_a1c_first","triglycerides_first","total_cholesterol_first",
     "height","weight",
 ]
-# 肾病金标准 — 恒 ABSENT, 题表须标注"证据缺失", reference 允许 Unresolved
+# Missing kidney measurements are recorded explicitly; Unresolved is allowed.
 RENAL_GOLD_ABSENT = ["creatinine", "eGFR", "UACR", "creatinine_trajectory"]
 
 def parse_fields(q):
@@ -57,7 +48,7 @@ def load(split):
     return [json.loads(l) for l in open(f"{DATA}/{split}.jsonl", encoding="utf-8")]
 
 def evidence_spans(fields):
-    """把 agent_visible 字段整理成 evidence spans (source_id=字段名, value=原值/NA)。"""
+    """Attach a source ID and the original value to each allowed evidence field."""
     spans = []
     for k in AGENT_VISIBLE:
         v = fields.get(k, "NA")
@@ -76,32 +67,32 @@ def skeleton():
         n_missing = sum(1 for s in spans if s["missing"])
         row = {
             "task_id": task_id,
-            "checkpoint": 0,                     # Pilot 单 checkpoint 起步
+            "checkpoint": 0,                     # Start the pilot with a single decision checkpoint.
             "source_record_id": f"test_row_{idx}",
             "subject_id": c["subject_id"],
             "pilot_reason": c["pilot_reason"],
-            "gold_label_HIDDEN": c["gold_label"],   # 医生不可见, 仅 evaluation_only
-            # 题干与选项待 S2 生成 (需 GPT)
+            "gold_label_HIDDEN": c["gold_label"],   # Reference fields are hidden from the participant.
+            # The question and options will be filled by a separate generation step.
             "question": "[PENDING_S2]",
             "question_type": "[PENDING_S2]",       # scope/rule/evidence/temporal/preference
             "option_c1": "[PENDING_S2]",
             "option_c2": "[PENDING_S2]",
             "option_c3": "[PENDING_S2]",
             "other_options": "Insufficient Evidence | None of the Above | Skip",
-            # 证据 (本地已填好)
+            # Evidence copied from the local record.
             "evidence_spans_json": json.dumps(spans, ensure_ascii=False),
             "n_evidence_fields": len(spans),
             "n_missing_fields": n_missing,
             "renal_goldstandard_absent": "|".join(RENAL_GOLD_ABSENT),
             "reference_allows_unresolved": "TRUE" if c["pilot_reason"].startswith("evidence_scarce") or c["gold_label"] in ("A","B") else "CHECK",
-            # 医生填写列 (空)
+            # Empty columns for the participant's reply.
             "doctor_answer": "",
             "doctor_seconds": "",
-            # 生成标记
+            # Mark which parts of the table have been filled.
             "s2_status": "PENDING",
         }
         table.append(row)
-    # 写骨架 CSV + JSON
+    # Save the blank table as CSV and JSON.
     csv_path = f"{OUT}/question_table_skeleton.csv"
     cols = [k for k in table[0].keys() if k != "evidence_spans_json"] + ["evidence_spans_json"]
     with open(csv_path, "w", newline="", encoding="utf-8") as f:
@@ -111,23 +102,23 @@ def skeleton():
         json.dump(table, f, ensure_ascii=False, indent=2)
     meta = {
         "timestamp": datetime.now(JST).isoformat(),
-        "stage": "skeleton (阶段1, 本地无GPT)",
+        "stage": "Blank table built locally without model calls",
         "n_rows": len(table),
         "pending_s2_fields": ["question", "question_type", "option_c1/c2/c3"],
-        "note": "候选题(question/options)需外部 S2 候选题生成",
+        "note": "Question text and answer options are filled by a separate generation step.",
         "outputs": {"csv": csv_path, "json": f"{OUT}/question_table_skeleton.json"},
     }
     with open(f"{OUT}/question_table_meta.json", "w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=2)
     print(json.dumps(meta, ensure_ascii=False, indent=2))
-    print(f"\nsaved {csv_path} ({len(table)} rows, 证据已填, 候选题待 S2)")
+    print(f"\nsaved {csv_path} ({len(table)} rows; evidence copied, questions still empty)")
 
 def fill():
     raise SystemExit("The historical fill runner is unavailable. Use --stage skeleton for the local template.")
 
 def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--stage", choices=["skeleton", "fill"], default="skeleton")
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--stage", choices=["skeleton", "fill"], default="skeleton", help='Use skeleton to build a blank table; the historical fill runner is unavailable')
     args = ap.parse_args()
     if args.stage == "skeleton":
         skeleton()

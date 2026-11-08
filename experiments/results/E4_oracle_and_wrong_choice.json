@@ -1,7 +1,7 @@
 {
   "experiment": "E4 Human Contribution: Oracle & Controlled-Wrong-Choice",
   "simulated": true,
-  "note": "Oracle is a mechanism upper bound only; real-participant rows require humans and are not produced here.",
+  "note": "The correct-answer condition supplies the benchmark reference answer. It is compared with deliberately wrong answers. Real-participant runs are not included.",
   "hilsql": {
     "domain": "HiL-Bench SQL (financial DB, Choice adaptation)",
     "max_questions": 3,
@@ -104,6 +104,6 @@
   },
   "medical": {
     "status": null,
-    "reason": "No archived medical oracle/wrong-choice result."
+    "reason": "No medical correct-answer or wrong-answer comparison was saved."
   }
 }

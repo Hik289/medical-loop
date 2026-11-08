@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-train_modules.py — S7 three-module training (A->Q->G coordinate-wise)
+Train the small networks for A, Q, and G in that order.
 
-3x [64->64->32->1] MLP, ReLU, sigmoid. Each 6273 params, total 18819.
-Coordinate-wise: psi<-argmin L_A, then phi<-argmin L_Q (A frozen), then theta<-argmin L_G (A,Q frozen).
-L_total = L_A+L_Q+L_G is report-only; optimization is sequential.
-AdamW lr=0.001 batch=64 max_epochs=30/module/iter, 3 seeds (42,123,456), mean+-std.
-Normalization: train_only.
-Runs in the current Python environment (torch). Called as subprocess by pipeline.py.
+Each network uses the same MLP layout and a binary loss in this workflow
+check. Fit normalization on the training input, train with several seeds,
+and save the scores and model weights. Small groups use the recorded
+fallback behavior; the log reports which group supplied the examples.
+The paper trains Q by comparing pairs of questions.
 """
 import json, argparse, os
 import numpy as np
@@ -56,9 +55,9 @@ def train_one(X, y, seed, max_epochs=30, lr=1e-3, bs=64):
             "converged":losses[-1]<losses[0],"nan":bool(np.isnan(losses[-1]))}, model
 
 def main():
-    ap=argparse.ArgumentParser()
-    ap.add_argument("--run_dir",required=True)
-    ap.add_argument("--iter",type=int,default=0)
+    ap=argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--run_dir",required=True, help='Local run folder containing the feature files')
+    ap.add_argument("--iter",type=int,default=0, help='Training-round label used when saving files')
     a=ap.parse_args()
     featdir=f"{a.run_dir}/features"
     modeldir=f"{a.run_dir}/iter{a.iter}" if a.iter>0 else f"{a.run_dir}/models/iter0"

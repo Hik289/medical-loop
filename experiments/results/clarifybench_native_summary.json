@@ -53,5 +53,5 @@
     "execution_success_rate_pct": 92.27,
     "coverage_rate_pct": 57.71
   },
-  "note": "Native Protocol 官方 evaluator; A=Explicit E=Ambiguous I=Infeasible; Choice Adaptation 另行"
+  "note": "Uses the original benchmark evaluator. A: explicit, E: ambiguous, I: infeasible. Multiple-choice runs are reported separately."
 }

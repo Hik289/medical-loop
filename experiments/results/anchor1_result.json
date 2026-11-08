@@ -2,7 +2,7 @@
   "experiment_id": "anchor_1",
   "anchor": "H0.anchor_1 + lit_anchor1_range + eda_akirecall",
   "method": "Autonomous Agent (gpt-5.6-sol, fully autonomous, 32 visible fields)",
-  "description": "固定后端三分类复现, 命门; 仅可见字段, 无泄漏",
+  "description": "Baseline record classification using the fixed model and allowed input fields",
   "config": {
     "model": "gpt-5.6-sol",
     "n_test": 270,
@@ -47,6 +47,6 @@
   "judgment": {
     "acc_in_range_55_80": false,
     "acc_above_random": false,
-    "note": "acc 在区间内但 AKI recall 低 ≠ 失败, 是 Augmentation 目标信号; 仅 acc 崩溃(<55 或 ≈random)才算复现失败"
+    "note": "Original run check: flag accuracy below 55%; inspect AKI recall separately."
   }
 }

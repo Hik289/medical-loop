@@ -1,38 +1,13 @@
 """
-Figure 1 -- Core finding: augmentation gain tracks information novelty, not
-the act of asking.
+Draw the saved results plot using the released experiment summaries.
 
-Data source (ALL numbers read programmatically from experiments/results/*.json,
-never hand-typed as literals beyond what is printed by the verification block
-below -- run this script's __main__ to see the exact provenance echoed to
-stdout before the figure is drawn):
-  - Panel A bars:
-      1. ClarifyBench native/ask-human, Net Rescue vs Autonomous
-         -> experiments/results/E1_aggregate_FINAL.md (native_ask_human row)
-         -> cross-checked against E1_medical.json / E1_dialop.json structure
-      2. Medical same-evidence HumanChoice, Net Rescue
-         -> experiments/results/E2_medical.json -> E2."HumanChoice"
-      3. Expert Iteration, iteration 3 (converged), Net Rescue
-         -> experiments/results/E5_expert_iteration_simulated.json -> iter_curve[3].test.net_rescue
-      4. General->Medical frozen transfer, Augmentation Gain
-         -> experiments/results/E7_transfer_simulated.json -> rows["General -> Medical, frozen G/Q/A"]
-      5. NoisyToolBench gold clarification, Augmentation Gain (param-match)
-         -> experiments/results/E7_noisytoolbench.json -> agg
-  - Panel B: E5 real 3-seed Expert Iteration curve (Final Quality & Net Rescue
-    vs Autonomous, iterations 0-3)
-         -> experiments/results/E5_expert_iteration_simulated.json -> iter_curve[k].test
+Read the medical, ClarifyBench, Expert Iteration, transfer, and
+NoisyToolBench summary files before plotting. Check the expected values and
+print their sources. Patterned bars identify simulated respondents; other
+bars describe benchmark calls or supplied reference information. These labels
+do not claim independent verification of human participants.
 
-Evidence-tier legend (solid = MEASURED i.e. logged API/benchmark
-execution or genuine information asymmetry; hatched = SIMULATED i.e. a
-same-backbone gpt-5.6-sol instance role-playing the respondent with identical
-evidence to the agent -- see HumanLoop.md Sec. 10.2 and paper Sec. 5.1
-"Reporting convention").
-
-Run:
-    python3 figures/legacy/fig1_core_finding_code.py
-Outputs:
-    fig1_core_finding.pdf   (vector, for \\includegraphics)
-    fig1_core_finding.png   (raster preview)
+Outputs go into the local legacy_figures run folder.
 """
 import json
 import os
@@ -44,9 +19,7 @@ OUT = Path(os.environ.get("HUMANCHOICE_RUN_DIR", ROOT / "runs")) / "legacy_figur
 OUT.mkdir(parents=True, exist_ok=True)
 
 # ---------------------------------------------------------------------------
-# STEP 1: load every number we need BEFORE importing matplotlib (avoids a
-# known dentry-cache eviction issue where matplotlib's font-dir scan can hide
-# files created in the same process from later open() calls).
+# Load the saved values before importing the plotting library.
 # ---------------------------------------------------------------------------
 
 with open(RESULTS / "E2_medical.json") as f:
@@ -101,7 +74,7 @@ e1_cb_net_rescue = 0.0
 e1_cb_ci = [0.0, 0.0]
 e1_cb_n = ci_cell.split("n=")[1].rstrip(")")
 
-print("=== Aggregate values from archived summaries ===")
+print("=== Values from saved summaries ===")
 print(f"E1 ClarifyBench native/ask-human Net Rescue = {e1_cb_net_rescue} {e1_cb_ci} (n={e1_cb_n})  [MEASURED]")
 print(f"E2 Medical HumanChoice Net Rescue            = {e2_net_rescue} {e2_ci}  [SIMULATED]")
 print(f"E5 Expert Iteration, iter 3, Net Rescue       = {e5_iter3_net_rescue} {e5_iter3_ci}  [SIMULATED]")
@@ -109,7 +82,7 @@ print(f"E7 General->Medical frozen transfer, Aug.Gain = {e7_frozen_gain} {e7_fro
 print(f"E7 NoisyToolBench gold clarification, Aug.Gain= {ntb_gain} (point est., n=200)  [MEASURED]")
 print("============================")
 
-# pre-open output file handles to defend against the dentry-cache issue
+# Open output files before drawing.
 pdf_path = OUT / "fig1_core_finding.pdf"
 png_path = OUT / "fig1_core_finding.png"
 os.listdir(str(OUT))
@@ -163,11 +136,11 @@ axB = fig.add_subplot(gs[0, 1])
 
 # ------------------------- Panel A: five-bar contrast -------------------------
 labels = [
-    "ClarifyBench\nask\n(same-info)",
+    "ClarifyBench\nask\n(same evidence)",
     "Medical\nsame-\nevidence",
     "Expert\nIteration\n(round 3)",
     "Transfer\n(frozen,\nto Medical)",
-    "NoisyTool-\nBench\n(gold answer)",
+    "NoisyTool-\nBench\n(correct answer)",
 ]
 values = [e1_cb_net_rescue, e2_net_rescue, e5_iter3_net_rescue, e7_frozen_gain, ntb_gain]
 # lower/upper error (CI); NTB has no CI (single point-estimate aggregate, n=200)
@@ -190,12 +163,12 @@ bars = axA.bar(
     zorder=3,
 )
 axA.axhline(0, color="#888888", lw=1.0, zorder=1)
-axA.set_ylabel("Augmentation gain (pp)")
+axA.set_ylabel("Change in score (pp)")
 axA.set_xticks(x)
 axA.set_xticklabels(labels, fontsize=8.3)
 axA.tick_params(axis="x", pad=4)
 axA.set_ylim(-3.0, 38)
-axA.set_title("Same evidence $\\Rightarrow$ gain $\\approx$ 0; new information $\\Rightarrow$ real gain",
+axA.set_title("Saved gains with and without added information",
               fontsize=9.3, fontweight="bold", pad=8)
 
 # value labels
@@ -209,7 +182,7 @@ for xi, v, eh in zip(x, values, err_hi):
 
 # in-panel annotation naming the grouping; placed left-of-center, well clear
 # of both the legend box (upper-right-of-center) and the NTB bar/value label
-axA.text(0.015, 0.72, "Bars 1--4: four independent\nsame-info settings (E1, E2, E5, E7)\n-- all $\\approx$ 0",
+axA.text(0.015, 0.72, "The first four settings\nshow little or no gain",
           transform=axA.transAxes, ha="left", va="top", fontsize=7.4, color=C_GRAY,
           style="italic", bbox=dict(boxstyle="round,pad=0.3", facecolor="white",
                                       edgecolor="#cccccc", alpha=0.92))
@@ -217,8 +190,8 @@ axA.text(0.015, 0.72, "Bars 1--4: four independent\nsame-info settings (E1, E2, 
 # legend for evidence tier (proxy patches)
 from matplotlib.patches import Patch
 legend_handles = [
-    Patch(facecolor="white", edgecolor="#333333", hatch="", label="Measured (real logged run / genuine info. gap)"),
-    Patch(facecolor="white", edgecolor="#333333", hatch="//", label="Simulated respondent (same backbone, same evidence)"),
+    Patch(facecolor="white", edgecolor="#333333", hatch="", label="Benchmark run / supplied information"),
+    Patch(facecolor="white", edgecolor="#333333", hatch="//", label="Model-generated reply (same model, same evidence)"),
 ]
 axA.legend(handles=legend_handles, loc="upper center", bbox_to_anchor=(0.66, 1.0),
            frameon=True, framealpha=0.9, fontsize=7.0, handlelength=1.6,
@@ -233,7 +206,7 @@ autonomous_q = e5_by_iter[0]["per_seed"][0]["autonomous_quality"]
 
 axB2 = axB.twinx()
 
-l1 = axB.plot(iters, fq_mean, marker="o", color=C_BLUE, label="Final Quality", zorder=4)
+l1 = axB.plot(iters, fq_mean, marker="o", color=C_BLUE, label="Accuracy", zorder=4)
 axB.fill_between(iters, np.array(fq_mean) - np.array(fq_std), np.array(fq_mean) + np.array(fq_std),
                   color=C_BLUE, alpha=0.18, zorder=2)
 axB.axhline(autonomous_q, color=C_GRAY, lw=1.3, ls="--", zorder=1)
@@ -242,13 +215,13 @@ axB.text(iters[-1], autonomous_q + 0.12, "Autonomous", fontsize=7.0, color=C_GRA
 l2 = axB2.plot(iters, nr_mean, marker="s", color=C_ORANGE, label="Net Rescue", zorder=4)
 axB2.axhline(0, color=C_ORANGE, lw=0.8, ls=":", alpha=0.6, zorder=1)
 
-axB.set_xlabel("Expert Iteration Round")
-axB.set_ylabel("Final Quality (acc. %)", color=C_BLUE)
+axB.set_xlabel("Training round")
+axB.set_ylabel("Accuracy (%)", color=C_BLUE)
 axB2.set_ylabel("Net Rescue (pp)", color=C_ORANGE)
 axB.tick_params(axis="y", labelcolor=C_BLUE)
 axB2.tick_params(axis="y", labelcolor=C_ORANGE)
 axB.set_xticks(iters)
-axB.set_title("EI converges to\n``do no harm,'' not gain", fontsize=9.3, fontweight="bold", pad=6)
+axB.set_title("Training restores\nbaseline performance", fontsize=9.3, fontweight="bold", pad=6)
 axB.set_ylim(43.8, 46.2)
 axB2.set_ylim(-2.2, 1.2)
 axB2.grid(False)

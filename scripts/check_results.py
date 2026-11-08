@@ -1,4 +1,4 @@
-"""Check the arithmetic of the reported aggregates without record-level data."""
+"""Check arithmetic in the saved result summaries without reading patient records."""
 import json
 import math
 from pathlib import Path

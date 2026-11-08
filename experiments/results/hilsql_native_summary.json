@@ -6,6 +6,6 @@
   "n_tasks": 13,
   "n_solved": 0,
   "solve_rate": 0.0,
-  "note": "Native baseline on blocker tasks is EXPECTED LOW (HiL-Bench design: clarification needed). anchor_5 = official compare_pandas_outputs scorer runs + magnitude plausible. Full 100-task / 8-DB official run needs uv+sweagent+chromadb+docker MCP stack (blocker recorded).",
+  "note": "The baseline is evaluated on tasks designed to need clarification, using the benchmark's compare_pandas_outputs function. The full benchmark run needs additional tools and databases that were not available for this run.",
   "scorer": "official compare_pandas_outputs (from test_verify.py)"
 }

@@ -1,4 +1,4 @@
-"""Render the archived programmatic schematic without replacing the README artwork."""
+"""Draw the earlier schematic without changing the README illustration."""
 import os
 from pathlib import Path
 
@@ -153,10 +153,10 @@ label(x+w/2,3.74,"Human judgment",14.0,GREEN,weight="semibold")
 line([(x+.18,3.51),(x+w-.18,3.51)],GREEN_LINE,lw=.75,z=4)
 person(9.25, 2.99)
 card(9.64, 2.66, 2.18, .67, "white", GREEN_LINE, r=.075, z=4)
-label(9.78,3.135,"Is chronicity established?",10.2,align="left",weight="medium")
+label(9.78,3.135,"Is the condition chronic?",10.2,align="left",weight="medium")
 ax.add_patch(Circle((9.84,2.878),.066,fc=MINT,ec=GREEN,lw=1,zorder=6))
 check(9.832,2.877,GREEN,.46)
-label(9.97,2.878,"Evidence is insufficient",10.1,GREEN,align="left")
+label(9.97,2.878,"Not enough evidence",10.1,GREEN,align="left")
 
 c = stage(12.39, 3.20, "Action selector", "Choose an action and execute", SKY, BLUE_LINE, BLUE)
 sheet(c-.47, 3.15, BLUE, BLUE_LINE, scale=.73)
@@ -177,7 +177,7 @@ label(4.36,4.86,"Wait: execute the draft and retain the option to ask",11.4,AMBE
 # GPT revises the draft after the response; the original remains a candidate.
 label(12.21,2.09,"The reply informs a revised action.",10.9,GREEN,serif=True)
 
-# Replay and updates are separate from the online decision path.
+# Run paths and updates are separate from the online decision path.
 card(.40,.26,15.19,1.42,NEUTRAL,RULE,r=.11)
 label(.65,1.39,"Expert Iteration",16.0,weight="semibold",align="left",serif=True)
 label(.65,.89,"Learn from completed branches",10.9,MUTED,align="left")
@@ -188,10 +188,10 @@ for y,name,col,fc,ec in ((1.23,"Ask",GREEN,MINT,GREEN_LINE),(.69,"Wait",AMBER,CR
     card(4.58,y-.145,.83,.29,fc,ec,r=.065,z=4)
     label(4.995,y,name,10.3,col,weight="semibold")
     curve_arrow((5.43,y),((5.68,y),(5.66,.96)),(5.98,.96),col,lw=1.15)
-label(6.16,.96,"Replay",11.6,INK,align="left",weight="semibold")
+label(6.16,.96,"Run paths",11.6,INK,align="left",weight="semibold")
 arrow([(7.18,.96),(7.57,.96)],MUTED,lw=1.20)
 sheet(7.99,.96,BLUE,BLUE_LINE,scale=.67,accepted=True)
-label(8.40,1.10,"Score outcomes",11.7,INK,align="left",weight="semibold")
+label(8.40,1.10,"Check results",11.7,INK,align="left",weight="semibold")
 label(8.40,.80,"Quality and cost",9.7,MUTED,align="left")
 arrow([(10.07,.96),(10.45,.96)],MUTED,lw=1.20)
 label(10.71,.96,"Update",11.7,INK,align="left",weight="semibold")

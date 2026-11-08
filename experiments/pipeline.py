@@ -1,21 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-pipeline.py — HumanChoice S0-S8 end-to-end pipeline (simulated mini-batch, line1)
+Run the small-batch HumanChoice workflow with model-generated replies.
 
-按 exp_design.md §3 架构跑通:
- S0 数据加载+split冻结 (anchor_3 + anchor_2b)
- S1 Autonomous Agent (冻结 good-faith prompt, prompt_hash 7b3032b2)
- S2 候选题生成 Q_pool (≤3 运行时题, 五型)
- S3 simulated-user 答局部题 (gpt-5.6-sol 扮医生, 仅 agent_visible)
- S4 行动修改 a1 = f(x, q, r)
- S5 终局评分 Y/U (simulated scorer, 要求(b) Unresolved rubric)
- S6 G/Q/A 特征提取 (≤64 维, 确定性)
- S7 三模块训练 (A->Q->G coordinate-wise, 18819 参数) -- 调 train_modules.py (torch env)
- S8 一轮 Expert Iteration (target 刷新 + anchor_2b split 不变断言)
-
-LLM 调用: gpt-5.6-sol (OpenAI SDK, max_retries=6, timeout=180).
-并发 worker (ThreadPool, 默认 12). 全部落盘 per-task, 断点续跑.
+Load and split the records, run the baseline, generate questions, simulate
+replies, revise actions, score results, extract features, and train A, Q, G.
+The final stage repeats training on the same labels and checks the patient
+split; it is a workflow check, not the full Expert Iteration experiment.
+Save intermediate files locally and reuse them when resuming.
 """
 from __future__ import annotations
 import json, re, os, sys, time, argparse, hashlib, random, subprocess
@@ -96,7 +88,7 @@ def extract_json(text):
     return {}
 
 def llm_call(client, messages, tag=""):
-    """单次 LLM 调用 (reasoning_effort=high), 返回 (content, usage)。防 wedge: timeout=180."""
+    """Call the model with retries and return its text and usage counts."""
     for attempt in range(3):
         try:
             r = client.chat.completions.create(
@@ -237,7 +229,7 @@ S3_SYS = (
     "若都不对选 None; 若无法回答选 Skip。严格输出 JSON: {\"choice\":\"选项原文\",\"reason\":\"一句话\"}。"
 )
 def s3_simuser(client, t, qrec, run_dir):
-    """对 Q_pool 第一题 (q_t) 用 simulated-user 作答。"""
+    """Simulate a reply to the first candidate question using the same evidence."""
     fp=f"{run_dir}/sim_answers/{t['task_id']}.json"
     if os.path.exists(fp): return json.load(open(fp,encoding="utf-8"))
     qpool=qrec["Q_pool"]
@@ -333,10 +325,13 @@ def s4_revise(client, t, a0, qrec, srec, run_dir):
 # S5 — final scoring Y / U  (simulated scorer, requirement(b) Unresolved rubric)
 # =====================================================================
 def s5_score(t, irec, run_dir):
-    """终局评分. Y = 任务正确性 (1 if pred==gold). 对两分支 (a0=wait, a1=ask) 各评分.
-    Evidence-review Unsupported: 本任务金标准 (creatinine/eGFR/UACR) ABSENT => allow_unresolved=True,
-    即任何具体 A/B/C 断言都属于证据不足下的过度断言 (requirement (b)). 这里按 rubric 落盘 unsupported 标记.
-    lambda_H/lambda_C: dev 前冻结占位 (pipeline 验证用)."""
+    """
+    Score the baseline and revised record labels against the stored label.
+
+    Save both branches. The review rule marks specific claims as unsupported
+    when the required kidney measurements are absent. The cost settings are
+    fixed placeholders for this workflow check.
+    """
     gold=t["gold"]
     lam_H=0.0005; lam_C=0.0  # placeholder, frozen before test in real exp
     out=[]
@@ -367,7 +362,7 @@ def _num(v,default=0.0):
     except Exception: return default
 
 def s6_features(t, a0rec, qrec, irec, outs, feat_schema):
-    """构造 G/Q/A 的特征向量 (<=64 dim, zero-pad). 严格确定性, 无 LLM, 不含未来/reference."""
+    """Build fixed numerical features for G, Q, and A and pad them to length 64."""
     f=t["fields"]
     n_missing=sum(1 for k in AGENT_VISIBLE if miss(f.get(k)))
     qpool=qrec["Q_pool"]; q=qpool[0] if qpool else None
@@ -639,10 +634,10 @@ def run_pipeline(run_id, n_batch, workers, iters):
     return summary
 
 if __name__=="__main__":
-    ap=argparse.ArgumentParser()
-    ap.add_argument("--run_id",default="pipeline_sim_mb20")
-    ap.add_argument("--n_batch",type=int,default=20)
-    ap.add_argument("--workers",type=int,default=12)
-    ap.add_argument("--iters",type=int,default=1)
+    ap=argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--run_id",default="pipeline_sim_mb20", help='Name of the local run folder')
+    ap.add_argument("--n_batch",type=int,default=20, help='Number of training records in the batch')
+    ap.add_argument("--workers",type=int,default=12, help='Number of parallel model calls')
+    ap.add_argument("--iters",type=int,default=1, help='Legacy option; this workflow runs its fixed training check')
     a=ap.parse_args()
     run_pipeline(a.run_id,a.n_batch,a.workers,a.iters)

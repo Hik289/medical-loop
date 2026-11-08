@@ -1,6 +1,6 @@
 {
   "experiment": "E1 General Human-in-the-Loop Task Performance",
-  "honesty": "ONLY real measured cells. No modeling/interpolation/fractional-recovery anywhere.",
+  "honesty": "Only completed, scored tasks are reported. Missing results were not estimated.",
   "columns": {
     "dialop_planning_utility": {
       "status": "REAL_ALL_ROWS",
@@ -69,7 +69,7 @@
         "solve_rate_pct": 0.0,
         "n_tasks": 13,
         "db_subset": "financial (only DB baked in public image)",
-        "note": "Native baseline on blocker tasks is EXPECTED LOW (HiL-Bench design: clarification needed). anchor_5 = official compare_pandas_outputs scorer runs + magnitude plausible. Full 100-task / 8-DB official run needs uv+sweagent+chromadb+docker MCP stack (blocker recorded)."
+        "note": "The baseline is evaluated on tasks designed to need clarification, using the benchmark's compare_pandas_outputs function. The full benchmark run needs additional tools and databases that were not available for this run."
       },
       "ask_methods": "NOT RUN -> null (full HiL-Bench ask_human stack: docker MCP + sweagent + chromadb not available; blocker recorded; NOT modeled)."
     }

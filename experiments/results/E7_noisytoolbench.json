@@ -2,7 +2,7 @@
   "benchmark": "NoisyToolBench",
   "model": "gpt-5.6-sol",
   "simulated_clarification": true,
-  "note": "Query only vs. query plus benchmark gold clarification. No human participant.",
+  "note": "Compares the query alone with the query plus the benchmark's correct clarification. No human participant answered.",
   "agg": {
     "autonomous": {
       "n": 200,

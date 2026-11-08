@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-autonomous_agent.py — H0.anchor_1 Autonomous Agent 复现 (命门, debug_move=COMPARE)
+Run the original medical-record baseline without asking for help.
 
-固定 gpt-5.6-sol 的完全自主 Agent, 在 270 test 上做三分类 (A/B/C), 仅用 34(实为32) 可见字段。
-- 禁止泄漏: 只喂 agent_visible 字段 (剔除 16 outcome + 4 answer + 2 ID)
-- Structured JSON 输出: {label: A|B|C, evidence_ids, uncertainty}
-- 评估: overall acc + macro-F1 + per-class recall (AKI=C 单列) via eval_metrics
-- reference: clean 监督锚 LogReg 71.5% acc / AKI recall 40.5%
-- 判据: acc ∈ [55%,80%] 且 >random 0.33
-
-并发 + 落盘 per-task + 断点续跑。OpenAI SDK max_retries=6, timeout=180。
+The model sees only the approved input fields and returns a record label,
+evidence fields, and uncertainty. Save each prediction locally and report
+accuracy, macro-F1, and recall for each class. Reuse saved predictions when
+resuming a run.
 """
 from __future__ import annotations
 import json, re, os, sys, time, argparse
@@ -23,7 +19,7 @@ JST = timezone(timedelta(hours=9))
 DATA = str(data_dir())
 MODEL = model_name()
 
-# ---- 字段 (与 anchor3_split_assert 一致, 32 真实可见) ----
+# Input fields, matching the data-split check.
 AGENT_VISIBLE = [
     "admittime","admission_location","admission_type","admission_age","gender","race",
     "insurance","marital_status","language",
@@ -77,10 +73,10 @@ def build_user_prompt(fields):
     return "该患者可见字段如下:\n" + "\n".join(lines) + "\n\n请给出三分类判断 (JSON)。"
 
 def extract_label(text):
-    """从模型输出稳健提取 A/B/C。"""
+    """Read a class label from JSON or, if needed, from a standalone A, B, or C."""
     if not text:
         return None
-    # 优先 JSON
+    # Try the structured JSON response first.
     try:
         m = re.search(r'\{.*\}', text, re.S)
         if m:
@@ -90,7 +86,7 @@ def extract_label(text):
                 return lab, obj
     except Exception:
         pass
-    # 退化: 找首个独立 A/B/C
+    # If JSON parsing fails, find a standalone class letter.
     m = re.search(r'\b([ABC])\b', text.upper())
     if m:
         return m.group(1), {}
@@ -141,11 +137,11 @@ def call_one(client, idx, row, rundir, effort):
     return idx, rec
 
 def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--workers", type=int, default=6)
-    ap.add_argument("--limit", type=int, default=0, help="0=全部 270")
-    ap.add_argument("--effort", type=str, default="", help="reasoning_effort: ''|high|default")
-    ap.add_argument("--rundir", type=str, default=str(runs_dir() / 'anchor1'))
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--workers", type=int, default=6, help='Number of parallel model calls')
+    ap.add_argument("--limit", type=int, default=0, help="Maximum records to evaluate; 0 runs the full test set")
+    ap.add_argument("--effort", type=str, default="", help="Model reasoning effort; leave empty to use the service default")
+    ap.add_argument("--rundir", type=str, default=str(runs_dir() / 'anchor1'), help='Local folder for predictions and scores')
     args = ap.parse_args()
 
     rundir = args.rundir
@@ -169,8 +165,8 @@ def main():
             if done % 20 == 0 or done == len(test):
                 print(f"  progress {done}/{len(test)}  (last idx={idx} pred={rec['pred']} gold={rec['gold']})", flush=True)
 
-    # 评估
-    preds = [r["pred"] if r["pred"] else "A" for r in records]  # 无法解析的记为多数类 A (保守, 不丢样本)
+    # Score the saved predictions.
+    preds = [r["pred"] if r["pred"] else "A" for r in records]  # Keep failed responses in the score, using class A as the recorded fallback.
     golds = [r["gold"] for r in records]
     subjects = [r["subject_id"] for r in records]
     n_parse_fail = sum(1 for r in records if not r["pred"])
@@ -189,7 +185,7 @@ def main():
         "anchor": "H0.anchor_1 + lit_anchor1_range + eda_akirecall",
         "timestamp": datetime.now(JST).isoformat(),
         "method": "Autonomous Agent (gpt-5.6-sol, fully autonomous, 32 visible fields)",
-        "description": "固定后端三分类复现, 命门; 仅可见字段, 无泄漏",
+        "description": "Baseline record classification using the fixed model and allowed input fields",
         "config": {"model": MODEL, "n_test": len(test), "visible_fields": len(AGENT_VISIBLE),
                    "reasoning_effort": effort or "default", "workers": args.workers},
         "reference": {"clean_logreg_acc": 71.48, "clean_logreg_aki_recall": 40.5,
@@ -210,7 +206,7 @@ def main():
         "judgment": {
             "acc_in_range_55_80": 55.0 <= acc["overall_acc"] * 100 <= 80.0,
             "acc_above_random": acc["overall_acc"] * 100 > 33.3,
-            "note": "acc 在区间内但 AKI recall 低 ≠ 失败, 是 Augmentation 目标信号; 仅 acc 崩溃(<55 或 ≈random)才算复现失败",
+            "note": "Original run check: flag accuracy below 55%; inspect AKI recall separately.",
         },
     }
     with open(f"{rundir}/anchor1_result.json", "w", encoding="utf-8") as f:

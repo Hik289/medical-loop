@@ -1,4 +1,4 @@
-"""Portable paths and opt-in configuration for restricted-data experiments."""
+"""Read local folders and model settings from environment variables."""
 import os
 from pathlib import Path
 
@@ -18,7 +18,7 @@ def model_name():
 
 
 def make_record_client():
-    """Require an explicitly configured endpoint for restricted inputs."""
+    """Allow record API calls only after the user has configured an approved service."""
     if os.environ.get("HUMANCHOICE_ALLOW_RECORD_API") != "1":
         raise SystemExit("Live record calls are disabled. See docs/reproduction.md.")
     if not os.environ.get("OPENAI_BASE_URL") or not os.environ.get("OPENAI_API_KEY"):

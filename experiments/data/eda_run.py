@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-EDA for humanchoice — MIMIC-derived Medical Record Review (897 records).
-Parses the 50 embedded structured fields from `question`,
-profiles types/missingness/labels/imbalance, checks patient isolation,
-and classifies fields into agent-visible vs leakage (answer + outcome).
+Summarize the fields in the saved medical records.
+
+Parse the fields stored in each question. Count missing values and labels,
+check patient separation, and identify fields that must be hidden from the
+agent because they contain answers or later outcomes.
 """
 import json, re, os, statistics
 from collections import Counter, defaultdict
@@ -23,9 +24,9 @@ def load(split):
     return [json.loads(l) for l in open(path, encoding="utf-8")]
 
 # ---- parse embedded fields from the question string ----
-# Format: "...人物画像（50项结构化指标）：k1:v1；k2:v2；...kN:vN"
+# The question ends with structured key:value fields separated by semicolons.
 # separator is the full-width semicolon '；'; key:value by first ':' (half-width).
-PREAMBLE_SPLIT = "："  # full-width colon after the "（50项结构化指标）"
+PREAMBLE_SPLIT = "："  # The record header uses a full-width colon.
 
 def parse_fields(q):
     # locate the structured block: after the last full-width colon before first field

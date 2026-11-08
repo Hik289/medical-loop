@@ -4,7 +4,7 @@
   "budget_cells": 3,
   "n_tasks": 134,
   "simulated": false,
-  "note": "Deterministic structural planning over official masked reward tables; no LLM. Ask-methods reveal B cells by their criterion; scored by official norm.",
+  "note": "Plans are selected from the benchmark's masked reward tables. Each asking rule reveals selected cells from the other role's table. Scores use the benchmark's own normalized reward. No model calls are made.",
   "rows": {
     "Autonomous Agent": {
       "planning_utility": 0.7497,

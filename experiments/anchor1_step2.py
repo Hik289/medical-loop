@@ -1,21 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-anchor1_step2.py — DEBUG-anchor1 Step2 (REDUCE+COMPARE 公平 good-faith prompt)
+Evaluate a baseline prompt with class definitions and optional examples.
 
-目的: 验证 anchor_1 崩溃是否源于 prompt 欠规格 (缺 A/B/C 三类定义 + 临床鉴别 + 字母序偏置)。
-good-faith = 给全三类定义 + ESKD/CKD/AKI 临床鉴别要点 + (可选) dev few-shot。
-代表有临床常识的 agent 在同样 32 字段下的合理表现, 不堆 trick (不告诉先验分布)。
-
-反 p-hacking 硬约束:
-  - prompt 只在 DEV (627 train 按患者分层分出) 上调
-  - few-shot 只从 train_rest (train 除 dev) 取, 不碰 dev 评估样本, 不碰 test
-  - 冻结 prompt_hash 后 270 test 只跑一次, 报一个数, 禁止 test 上迭代
-
-用法:
-  --split dev|test   评估哪个集
-  --fewshot N        每类 few-shot 数 (0=无)
-  --promptver TAG    prompt 版本标签 (落盘区分)
+Choose the prompt on a patient-separated development set. Draw examples only
+from the remaining training records, then keep the prompt fixed for test runs.
+Save the prompt hash so each result can be traced to the prompt used.
 """
 from __future__ import annotations
 import json, re, os, sys, time, argparse, hashlib, random
@@ -45,7 +35,7 @@ LABEL_FROM_ANSWER = {
     "AKI（急性肾损伤）": "C",
 }
 
-# ---- good-faith system prompt (临床常识, 非 trick; 不含先验分布) ----
+# Fixed prompt with class definitions; does not reveal class frequencies.
 SYSTEM = (
     "你是一名有临床常识的肾脏科医生, 正在做糖尿病相关肾脏并发症的回顾性病历分类。"
     "你将看到一位患者入院时可知的结构化字段。请在以下三类中判断最可能的分类。\n\n"
@@ -80,9 +70,9 @@ def fields_block(fields):
     return "\n".join(f"{k}: {fields.get(k,'NA')}" for k in AGENT_VISIBLE)
 
 def build_dev_split(seed=42, dev_per_class=None):
-    """从 train 627 按患者分层分出 dev + train_rest (few-shot 来源)。确定性。"""
+    """Split training patients into a development set and a pool of examples."""
     if dev_per_class is None:
-        dev_per_class = {"A": 92, "B": 39, "C": 20}   # ~ 24% 分层, 保持 60/26/13 比例, 共 151
+        dev_per_class = {"A": 92, "B": 39, "C": 20}   # Hold out about 24% per class, keeping the original class balance.
     rows = load("train")
     by = {"A": [], "B": [], "C": []}
     for i, r in enumerate(rows):
@@ -97,7 +87,7 @@ def build_dev_split(seed=42, dev_per_class=None):
     return dev, rest   # list of (orig_idx, row)
 
 def make_fewshot(rest, n_per_class, seed=42):
-    """从 train_rest 每类取 n 个 few-shot (不碰 dev/test)。"""
+    """Select examples from each class without using development or test records."""
     if n_per_class <= 0:
         return []
     by = {"A": [], "B": [], "C": []}
@@ -165,12 +155,12 @@ def call_one(client, idx, row, fields, gold, fewshot, effort, rundir):
     return idx, rec
 
 def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--split", choices=["dev","test"], required=True)
-    ap.add_argument("--fewshot", type=int, default=0)
-    ap.add_argument("--effort", type=str, default="high")
-    ap.add_argument("--promptver", type=str, default="v1")
-    ap.add_argument("--workers", type=int, default=8)
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--split", choices=["dev","test"], required=True, help='Evaluate the development or test split')
+    ap.add_argument("--fewshot", type=int, default=0, help='Number of training examples per class')
+    ap.add_argument("--effort", type=str, default="high", help='Model reasoning effort')
+    ap.add_argument("--promptver", type=str, default="v1", help='Label used to name the saved prompt run')
+    ap.add_argument("--workers", type=int, default=8, help='Number of parallel model calls')
     args = ap.parse_args()
 
     dev, rest = build_dev_split()
@@ -217,7 +207,7 @@ def main():
 
     result={"project_id":"humanchoice","experiment_id":f"anchor1_step2_{args.split}",
             "timestamp":datetime.now(JST).isoformat(),
-            "method":f"good-faith prompt (3类定义+临床鉴别+fewshot{args.fewshot}), gpt-5.6-sol effort={args.effort}",
+            "method":f"Class definitions with examples (examples per class: {args.fewshot}), gpt-5.6-sol effort={args.effort}",
             "split":args.split,"prompt_hash":ph,"promptver":args.promptver,
             "config":{"model":MODEL,"n":len(items),"fewshot_per_class":args.fewshot,"effort":args.effort,
                       "visible_fields":len(AGENT_VISIBLE)},

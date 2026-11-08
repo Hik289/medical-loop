@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Quantify label-predictivity of leakage (outcome) fields vs visible-only.
-Shows how much the original baseline numbers are inflated by outcome leakage,
-and establishes a *clean* supervised reference range for anchor_1."""
+"""
+Compare classifiers trained with and without later-outcome fields.
+
+Use the difference to measure how those fields affect prediction scores.
+Also report a supervised reference using only the agent's input fields.
+"""
 import json, re, os
 from collections import Counter
 import numpy as np

@@ -1,6 +1,6 @@
 {
   "experiment_id": "anchor1_step2_dev",
-  "method": "good-faith prompt (3类定义+临床鉴别+fewshot3), gpt-5.6-sol effort=high",
+  "method": "Class definitions with 3 examples per class; gpt-5.6-sol with high reasoning effort",
   "split": "dev",
   "prompt_hash": "7b3032b25d5380e0",
   "promptver": "v1",

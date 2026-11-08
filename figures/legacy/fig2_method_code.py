@@ -1,4 +1,4 @@
-"""Convert an existing, locally supplied method PNG to a PDF."""
+"""Wrap a local PNG in a PDF for use in the manuscript."""
 import argparse
 from pathlib import Path
 from PIL import Image
