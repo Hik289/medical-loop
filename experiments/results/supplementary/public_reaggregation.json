@@ -1,0 +1,635 @@
+{
+  "source": "task-level cached executions",
+  "new_api_calls": 0,
+  "rows": [
+    {
+      "protocol": "native",
+      "method": "autonomous",
+      "measured": 303,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 66.0,
+        "tool_match_rate": 74.717,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 303,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": 0.0,
+        "delta_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_rescue": 0.0,
+        "graded_harm": 0.0,
+        "graded_net_rescue": 0.0,
+        "graded_net_rescue_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_wall_s": 348.8516171617163,
+      "questions_per_task": 0.0
+    },
+    {
+      "protocol": "native",
+      "method": "native_ask_human",
+      "measured": 203,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 66.381,
+        "tool_match_rate": 82.061,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 191,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": 0.005987199075434365,
+        "delta_ci95": [
+          -0.026047847457610324,
+          0.03802125807669387
+        ],
+        "graded_rescue": 0.1099476439790576,
+        "graded_harm": 0.1099476439790576,
+        "graded_net_rescue": 0.0,
+        "graded_net_rescue_ci95": [
+          -0.06806282722513089,
+          0.06806282722513089
+        ]
+      },
+      "mean_wall_s": 402.89669950738914,
+      "questions_per_task": 0.3448275862068966
+    },
+    {
+      "protocol": "native",
+      "method": "compute_matched",
+      "measured": 45,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 42.286,
+        "tool_match_rate": 55.688,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 44,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": -0.006456611570247933,
+        "delta_ci95": [
+          -0.05965909090909091,
+          0.03409090909090909
+        ],
+        "graded_rescue": 0.06818181818181818,
+        "graded_harm": 0.045454545454545456,
+        "graded_net_rescue": 0.02272727272727272,
+        "graded_net_rescue_ci95": [
+          -0.06818181818181818,
+          0.13636363636363635
+        ]
+      },
+      "mean_wall_s": 557.7471111111112,
+      "questions_per_task": 0.0
+    },
+    {
+      "protocol": "native",
+      "method": "clam_api",
+      "measured": 131,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 63.034,
+        "tool_match_rate": 69.135,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 118,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": -0.011806319857167317,
+        "delta_ci95": [
+          -0.05096210286888253,
+          0.026687577958764398
+        ],
+        "graded_rescue": 0.06779661016949153,
+        "graded_harm": 0.059322033898305086,
+        "graded_net_rescue": 0.008474576271186439,
+        "graded_net_rescue_ci95": [
+          -0.059322033898305086,
+          0.07627118644067797
+        ]
+      },
+      "mean_wall_s": 352.3567938931298,
+      "questions_per_task": 0.25190839694656486
+    },
+    {
+      "protocol": "native",
+      "method": "awn",
+      "measured": 334,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 67.05,
+        "tool_match_rate": 75.781,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 281,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": 0.004409770154484404,
+        "delta_ci95": [
+          -0.013990897979279812,
+          0.02308190901973611
+        ],
+        "graded_rescue": 0.1601423487544484,
+        "graded_harm": 0.05693950177935943,
+        "graded_net_rescue": 0.10320284697508898,
+        "graded_net_rescue_ci95": [
+          0.05338078291814947,
+          0.1601423487544484
+        ]
+      },
+      "mean_wall_s": 532.7918862275449,
+      "questions_per_task": 0.6467065868263473
+    },
+    {
+      "protocol": "native",
+      "method": "uot",
+      "measured": 117,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 67.307,
+        "tool_match_rate": 71.809,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 93,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": 0.015100292243755753,
+        "delta_ci95": [
+          -0.04225944306589468,
+          0.06669974840603024
+        ],
+        "graded_rescue": 0.22580645161290322,
+        "graded_harm": 0.10752688172043011,
+        "graded_net_rescue": 0.11827956989247311,
+        "graded_net_rescue_ci95": [
+          0.0,
+          0.23655913978494625
+        ]
+      },
+      "mean_wall_s": 220.67350427350436,
+      "questions_per_task": 2.1965811965811968
+    },
+    {
+      "protocol": "native",
+      "method": "atd",
+      "measured": 364,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 68.76,
+        "tool_match_rate": 75.186,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 302,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": 0.014346700827745675,
+        "delta_ci95": [
+          -0.00864225780188506,
+          0.03732082148231961
+        ],
+        "graded_rescue": 0.1291390728476821,
+        "graded_harm": 0.11258278145695365,
+        "graded_net_rescue": 0.016556291390728464,
+        "graded_net_rescue_ci95": [
+          -0.039735099337748346,
+          0.0728476821192053
+        ]
+      },
+      "mean_wall_s": 296.471510989011,
+      "questions_per_task": 2.217032967032967
+    },
+    {
+      "protocol": "native",
+      "method": "sage",
+      "measured": 357,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 67.829,
+        "tool_match_rate": 74.769,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 299,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": 0.001018427475218426,
+        "delta_ci95": [
+          -0.01976448688478986,
+          0.021246724126421146
+        ],
+        "graded_rescue": 0.15384615384615385,
+        "graded_harm": 0.0802675585284281,
+        "graded_net_rescue": 0.07357859531772576,
+        "graded_net_rescue_ci95": [
+          0.020066889632107024,
+          0.12709030100334448
+        ]
+      },
+      "mean_wall_s": 261.4249019607844,
+      "questions_per_task": 0.4957983193277311
+    },
+    {
+      "protocol": "native",
+      "method": "voi",
+      "measured": 249,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 68.212,
+        "tool_match_rate": 69.181,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 221,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": 0.04405086205294238,
+        "delta_ci95": [
+          0.0087326032851228,
+          0.0850076491070145
+        ],
+        "graded_rescue": 0.22624434389140272,
+        "graded_harm": 0.12217194570135746,
+        "graded_net_rescue": 0.10407239819004525,
+        "graded_net_rescue_ci95": [
+          0.03167420814479638,
+          0.18099547511312217
+        ]
+      },
+      "mean_wall_s": 421.5869477911648,
+      "questions_per_task": 1.2690763052208835
+    },
+    {
+      "protocol": "choice",
+      "method": "native_ask_human",
+      "measured": 138,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 60.384,
+        "tool_match_rate": 75.652,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 133,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": -0.024587282097233445,
+        "delta_ci95": [
+          -0.07059971356963839,
+          0.017700580416192973
+        ],
+        "graded_rescue": 0.08270676691729323,
+        "graded_harm": 0.08270676691729323,
+        "graded_net_rescue": 0.0,
+        "graded_net_rescue_ci95": [
+          -0.06766917293233082,
+          0.06766917293233082
+        ]
+      },
+      "mean_wall_s": 422.7361594202901,
+      "questions_per_task": 0.3188405797101449
+    },
+    {
+      "protocol": "choice",
+      "method": "clam_api",
+      "measured": 15,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 31.365,
+        "tool_match_rate": 29.333,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 14,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": 0.0,
+        "delta_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_rescue": 0.0,
+        "graded_harm": 0.0,
+        "graded_net_rescue": 0.0,
+        "graded_net_rescue_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_wall_s": 520.2393333333333,
+      "questions_per_task": 0.2
+    },
+    {
+      "protocol": "choice",
+      "method": "awn",
+      "measured": 184,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 65.412,
+        "tool_match_rate": 70.422,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 164,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": 0.018103356471362197,
+        "delta_ci95": [
+          -0.01471774180705314,
+          0.04867762637490041
+        ],
+        "graded_rescue": 0.15853658536585366,
+        "graded_harm": 0.06097560975609756,
+        "graded_net_rescue": 0.0975609756097561,
+        "graded_net_rescue_ci95": [
+          0.03048780487804878,
+          0.17073170731707318
+        ]
+      },
+      "mean_wall_s": 726.9002717391305,
+      "questions_per_task": 0.4945652173913043
+    },
+    {
+      "protocol": "choice",
+      "method": "uot",
+      "measured": 49,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 59.859,
+        "tool_match_rate": 57.638,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 46,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": 0.04824534415495513,
+        "delta_ci95": [
+          -0.010394144375837744,
+          0.11551345298484887
+        ],
+        "graded_rescue": 0.21739130434782608,
+        "graded_harm": 0.13043478260869565,
+        "graded_net_rescue": 0.08695652173913043,
+        "graded_net_rescue_ci95": [
+          -0.06521739130434782,
+          0.2391304347826087
+        ]
+      },
+      "mean_wall_s": 527.4563265306122,
+      "questions_per_task": 2.163265306122449
+    },
+    {
+      "protocol": "choice",
+      "method": "atd",
+      "measured": 249,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 63.856,
+        "tool_match_rate": 70.526,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 214,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": -0.007254435214165842,
+        "delta_ci95": [
+          -0.04092886314711493,
+          0.02558071113115093
+        ],
+        "graded_rescue": 0.13551401869158877,
+        "graded_harm": 0.10747663551401869,
+        "graded_net_rescue": 0.028037383177570083,
+        "graded_net_rescue_ci95": [
+          -0.037383177570093455,
+          0.08878504672897196
+        ]
+      },
+      "mean_wall_s": 486.5028112449802,
+      "questions_per_task": 2.0481927710843375
+    },
+    {
+      "protocol": "choice",
+      "method": "sage",
+      "measured": 365,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 68.656,
+        "tool_match_rate": 74.82,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 302,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": 0.008035599750636762,
+        "delta_ci95": [
+          -0.010503651706904536,
+          0.02552219136315358
+        ],
+        "graded_rescue": 0.1390728476821192,
+        "graded_harm": 0.059602649006622516,
+        "graded_net_rescue": 0.07947019867549668,
+        "graded_net_rescue_ci95": [
+          0.033112582781456956,
+          0.1291390728476821
+        ]
+      },
+      "mean_wall_s": 196.8309863013699,
+      "questions_per_task": 0.5315068493150685
+    },
+    {
+      "protocol": "choice",
+      "method": "voi",
+      "measured": 351,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 68.225,
+        "tool_match_rate": 75.454,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 294,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": 0.009057467642401614,
+        "delta_ci95": [
+          -0.011926079234002405,
+          0.030548544204006375
+        ],
+        "graded_rescue": 0.12244897959183673,
+        "graded_harm": 0.08163265306122448,
+        "graded_net_rescue": 0.04081632653061225,
+        "graded_net_rescue_ci95": [
+          -0.01020408163265306,
+          0.09183673469387756
+        ]
+      },
+      "mean_wall_s": 460.27339031339045,
+      "questions_per_task": 1.4501424501424502
+    },
+    {
+      "protocol": "choice",
+      "method": "humanchoice",
+      "measured": 364,
+      "expected": 370,
+      "metrics": {
+        "param_match_rate": 67.817,
+        "tool_match_rate": 75.616,
+        "success": 0.0
+      },
+      "paired": {
+        "n_common": 301,
+        "binary_metric": "success",
+        "rescue": 0.0,
+        "harm": 0.0,
+        "net_rescue": 0.0,
+        "net_rescue_ci95": [
+          0.0,
+          0.0
+        ],
+        "graded_metric": "param_match_rate",
+        "delta_mean": 0.0018099408137516382,
+        "delta_ci95": [
+          -0.017770637880565567,
+          0.02016182675162546
+        ],
+        "graded_rescue": 0.09634551495016612,
+        "graded_harm": 0.0664451827242525,
+        "graded_net_rescue": 0.029900332225913623,
+        "graded_net_rescue_ci95": [
+          -0.016611295681063124,
+          0.07308970099667775
+        ]
+      },
+      "mean_wall_s": 469.635164835165,
+      "questions_per_task": 1.0714285714285714
+    }
+  ]
+}

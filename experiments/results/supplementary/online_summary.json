@@ -1,0 +1,93 @@
+{
+  "protocol": "Matched online pilot; hash-selected held-out tasks balanced by official request category; shared prefix cache; serialized variants per task; seed 42",
+  "request_timeout_s": 180,
+  "task_timeout_s": 900,
+  "retry_errors": true,
+  "selected_category_counts": {
+    "A": 2,
+    "E": 2,
+    "I": 2
+  },
+  "code_sha256": "bba6feddbe2da962304312b2eb9acc6271265bb9b4b6079bc48c213b0314ae2a",
+  "api_count_scope": "Calls recorded in final execution files; incomplete timeout/retry ledgers are not a complete billing total",
+  "n_selected": 6,
+  "n_complete_common": 6,
+  "variants": {
+    "full": {
+      "measured": 6,
+      "errors": 0,
+      "timeouts": 0,
+      "common_n": 6,
+      "quality": 74.35897435897436,
+      "gain_pp": 0.0,
+      "ci95_pp": [
+        0.0,
+        0.0
+      ],
+      "questions_per_task": 1.3333333333333333,
+      "mean_wall_s": 180.84,
+      "live_api_calls": 78
+    },
+    "no_G": {
+      "measured": 6,
+      "errors": 0,
+      "timeouts": 0,
+      "common_n": 6,
+      "quality": 85.18518518518518,
+      "gain_pp": 10.826210826210826,
+      "ci95_pp": [
+        0.0,
+        27.492877492877493
+      ],
+      "questions_per_task": 3.0,
+      "mean_wall_s": 81.80333333333333,
+      "live_api_calls": 48
+    },
+    "no_Q": {
+      "measured": 6,
+      "errors": 0,
+      "timeouts": 0,
+      "common_n": 6,
+      "quality": 57.6923076923077,
+      "gain_pp": -16.666666666666664,
+      "ci95_pp": [
+        -50.0,
+        0.0
+      ],
+      "questions_per_task": 1.5,
+      "mean_wall_s": 108.10166666666667,
+      "live_api_calls": 58
+    },
+    "no_A": {
+      "measured": 6,
+      "errors": 0,
+      "timeouts": 0,
+      "common_n": 6,
+      "quality": 74.35897435897436,
+      "gain_pp": 0.0,
+      "ci95_pp": [
+        0.0,
+        0.0
+      ],
+      "questions_per_task": 1.3333333333333333,
+      "mean_wall_s": 62.15333333333333,
+      "live_api_calls": 25
+    },
+    "autonomous": {
+      "measured": 6,
+      "errors": 0,
+      "timeouts": 0,
+      "common_n": 6,
+      "quality": 74.35897435897436,
+      "gain_pp": 0.0,
+      "ci95_pp": [
+        0.0,
+        0.0
+      ],
+      "questions_per_task": 0.0,
+      "mean_wall_s": 32.468333333333334,
+      "live_api_calls": 27
+    }
+  },
+  "elapsed_s": 961.86
+}

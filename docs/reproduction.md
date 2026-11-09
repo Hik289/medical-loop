@@ -77,3 +77,9 @@ The repository includes the experiment and figure scripts found in the project c
 The [experiment summary](results.md) explains which runs produced the saved scores. The small-batch workflow checks that the main stages work together; it does not recreate every reported experiment.
 
 The model prompts and dataset field names remain exactly as used in the recorded runs.
+
+## Supplementary release
+
+The later release includes the NumPy replay modules, the full portable public-benchmark controller in `experiments/e1_methods/e1`, and public-task seed-42 module weights. It adds complete module combinations, loss and target-refresh ablations, equal-request-budget rankings, an online module pilot, and a complete 1–30 epoch search. See [checkpoint selection](checkpoint-selection.md), [runtime setup](runtime.md), and the [aggregate results](../experiments/results/supplementary/). The earlier missing-runner statement above describes the original project copy, before this supplement.
+
+Run `python scripts/check_supplementary.py` to verify every released metric selection against the complete epoch trajectory and the fixed-30-epoch reference.

@@ -1,0 +1,62 @@
+{
+  "description": "Selected positive diagnostic additions from a server recheck; no new agent run or participant study.",
+  "medical_local_choice_oracle": {
+    "n_evaluable": 176,
+    "n_attempted": 270,
+    "n_adjudicable": 4,
+    "response_source": "Evaluation-derived local-choice oracle; not human participants",
+    "cached_response_accuracy": 44.89,
+    "oracle_accuracy": 46.59,
+    "cached_response_macro_f1": 42.08,
+    "oracle_macro_f1": 43.51,
+    "gain_vs_cached_response_pp": 1.7,
+    "autonomous_accuracy_derived": 46.02,
+    "oracle_net_rescue_pp": 0.57,
+    "oracle_net_rescue_ci95_pp": [
+      -3.98,
+      5.11
+    ],
+    "choice_follow_through_pct": 100.0,
+    "choice_follow_through_n": 4
+  },
+  "development_pipeline": {
+    "split": "train",
+    "respondents": "simulated",
+    "n": 80,
+    "autonomous_accuracy": 45.0,
+    "assisted_accuracy": 47.5,
+    "autonomous_macro_f1": 44.96,
+    "assisted_macro_f1": 47.9,
+    "net_rescue_pp": 2.5,
+    "net_rescue_ci95_pp": [
+      -2.5,
+      7.5
+    ],
+    "interpretation": "Development pipeline validation, not held-out evidence."
+  },
+  "collection_accounting": {
+    "selected_tasks_per_protocol": 120,
+    "one_pass": {
+      "simulated_answers": 240,
+      "api_calls_nominal": 775,
+      "test_accuracy": 45.56
+    },
+    "expert_iteration": {
+      "simulated_answers": 108,
+      "api_calls_nominal": 462,
+      "measured_collection_tasks": 114,
+      "collection_errors": 6,
+      "test_accuracy": 45.56
+    },
+    "simulated_answer_reduction_pct": 55.0,
+    "nominal_api_call_reduction_pct": 40.39,
+    "test_n": 270,
+    "test_seeds": 3,
+    "interpretation": "Recorded totals; collection coverage differs and answer/API budgets are not forced equal."
+  },
+  "source_sha256": {
+    "medical_oracle.json": "f79195a8f9c3f665746adc93a84e942d48fe591b99a6adaa57b289ba5fabf278",
+    "development_pilot.json": "fb9ebdbde786559aee1f3b2ad2bb9562ec9eaa0749f23f0f005f5f650a9869a1",
+    "iteration_collection.json": "9faf935016782ce94e798d2ce635b8337e943d76387571f27c8dc1fa1285c167"
+  }
+}

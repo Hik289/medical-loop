@@ -1,0 +1,14 @@
+{
+  "elapsed_s": 80.7,
+  "status_counts": {
+    "measured": 150,
+    "null": 50,
+    "error": 0
+  },
+  "original_cache_preserved": true,
+  "domain": "public tool tasks only",
+  "new_clinical_api_calls": 0,
+  "repaired_tasks": 7,
+  "new_api_calls": 20,
+  "new_tokens": 9242
+}

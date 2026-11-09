@@ -1,0 +1,110 @@
+{
+  "tab:related": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:coordination": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:epochjoint": {
+    "updated": true,
+    "source": "Complete single-epoch rows from epoch_selection.json"
+  },
+  "tab:medical": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:budget": {
+    "updated": true,
+    "source": "epoch_selection.json and table_epoch_selection.csv"
+  },
+  "tab:autonomous": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:collection": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:factorial": {
+    "updated": true,
+    "source": "epoch_selection.json and table_epoch_selection.csv"
+  },
+  "tab:lossablation": {
+    "updated": true,
+    "source": "epoch_selection.json and table_epoch_selection.csv"
+  },
+  "tab:costsweep": {
+    "updated": true,
+    "source": "epoch_selection.json and table_epoch_selection.csv"
+  },
+  "tab:poolsize": {
+    "updated": true,
+    "source": "epoch_selection.json and table_epoch_selection.csv"
+  },
+  "tab:supervision": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:publicpaired": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:online": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:mechanism": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:iteration": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:medicaloracle": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:pilot": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:planning": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:availability": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:clarify": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:clarifynative": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:timingcost": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:staticablation": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:transfer": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:sql": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  },
+  "tab:diagnostic": {
+    "updated": false,
+    "source": "Recorded fixed experiment, structural table, or source counts; no saved per-epoch scores substituted"
+  }
+}

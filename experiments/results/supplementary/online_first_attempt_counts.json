@@ -1,0 +1,22 @@
+{
+  "full": {
+    "measured": 3,
+    "error": 2
+  },
+  "no_G": {
+    "measured": 3,
+    "error": 1,
+    "timeout": 1
+  },
+  "no_Q": {
+    "measured": 3,
+    "timeout": 1,
+    "error": 1
+  },
+  "no_A": {
+    "measured": 5
+  },
+  "autonomous": {
+    "measured": 5
+  }
+}

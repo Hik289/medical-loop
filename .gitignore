@@ -16,6 +16,19 @@ __pycache__/
 *.zip
 *.pdf
 /data/
-runs/
+/runs/*
 outputs/
 *.log
+
+# Supplied public-benchmark module weights only.
+!/runs/e1_methods/
+/runs/e1_methods/*
+!/runs/e1_methods/hc_modules/
+/runs/e1_methods/hc_modules/*
+!/runs/e1_methods/hc_modules/choice/
+/runs/e1_methods/hc_modules/choice/*
+!/runs/e1_methods/hc_modules/choice/iter1/
+/runs/e1_methods/hc_modules/choice/iter1/*
+!/runs/e1_methods/hc_modules/choice/iter1/A_s42.json
+!/runs/e1_methods/hc_modules/choice/iter1/Q_s42.json
+!/runs/e1_methods/hc_modules/choice/iter1/G_s42.json
